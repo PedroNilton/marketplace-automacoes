@@ -58,8 +58,9 @@ Wireframes ainda não existem. Eles serão criados por fatia depois da aprovaç�
 | Documento | Estado | Decisão |
 |---|---|---|
 | [`architecture/ADR-001-stack-inicial.md`](architecture/ADR-001-stack-inicial.md) | Aceito | Next.js, NestJS, PostgreSQL, Prisma e monólito modular |
+| [`architecture/ADR-002-autenticacao-e-sessoes.md`](architecture/ADR-002-autenticacao-e-sessoes.md) | Aceito | Sessões opacas, cookies protegidos, Argon2id e CSRF |
 
-Novos ADRs serão criados quando uma decisão técnica duradoura for necessária, começando pela autenticação no plano da Spec 001.
+Novos ADRs serão criados somente quando outra decisão técnica duradoura for necessária.
 
 ### Especificações
 
@@ -87,8 +88,9 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 ## Estado resumido
 
 - Fundação documental: concluída.
+- Spec 001 — Identidade e acesso: pronta para implementação.
 - Código: ainda não iniciado.
-- Próxima entrega: `specs/001-identidade-acesso/spec.md`.
+- Próxima entrega documental: `specs/002-perfis/spec.md`.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.

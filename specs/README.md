@@ -51,12 +51,14 @@ specs/
 
 ## Sequência do MVP
 
-1. Identidade e acesso.
-2. Perfis.
-3. Categorias e ofertas.
-4. Moderação de ofertas.
-5. Catálogo e descoberta.
-6. Pedidos.
-7. Mensagens e entrega.
-8. Avaliações.
-9. Administração básica.
+| Ordem | Capacidade | Estado documental |
+|---:|---|---|
+| 001 | Identidade e acesso | Spec, ADR, plano e tarefas aprovados |
+| 002 | Perfis | Próxima especificação |
+| 003 | Categorias e ofertas | Aguardando |
+| 004 | Moderação de ofertas | Aguardando |
+| 005 | Catálogo e descoberta | Aguardando |
+| 006 | Pedidos | Aguardando |
+| 007 | Mensagens e entrega | Aguardando |
+| 008 | Avaliações | Aguardando |
+| 009 | Administração básica | Aguardando |

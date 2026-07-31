@@ -6,7 +6,7 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 
 O projeto está na fase de **especificação do MVP** e segue **Spec-Driven Development (SDD)**: comportamento, regras, arquitetura, critérios de aceite e tarefas são definidos antes do código.
 
-Ainda não existe aplicação executável neste repositório. A próxima entrega é a Spec 001 — Identidade e acesso.
+Ainda não existe aplicação executável neste repositório. A Spec 001 — Identidade e acesso já possui especificação, ADR, plano e tarefas aprovados e está pronta para implementação quando houver autorização. A próxima entrega exclusivamente documental é a Spec 002 — Perfis.
 
 ## Objetivo do MVP
 
@@ -48,6 +48,7 @@ A decisão completa está em [`docs/architecture/ADR-001-stack-inicial.md`](docs
 - [`docs/product/REQUIREMENTS-CATALOG.md`](docs/product/REQUIREMENTS-CATALOG.md) — requisitos rastreáveis.
 - [`docs/SDD-ROADMAP.md`](docs/SDD-ROADMAP.md) — roteiro até a beta.
 - [`specs/README.md`](specs/README.md) — processo das especificações.
+- [`specs/001-identidade-acesso/`](specs/001-identidade-acesso/) — primeira capacidade pronta para implementação.
 
 O índice completo está em [`docs/README.md`](docs/README.md).
 
@@ -76,4 +77,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Especificar identidade e acesso: cadastro, verificação de e-mail, sessão, logout e recuperação de senha.
+Escolher entre iniciar a implementação da Spec 001 ou continuar a preparação documental com a Spec 002 — Perfis. Pela estratégia atual de teoria antes do código, a sequência recomendada é preparar a Spec 002.

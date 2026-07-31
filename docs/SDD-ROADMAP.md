@@ -29,7 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-O projeto está pronto para iniciar a **Spec 001 — Identidade e acesso**. Ainda não está autorizado a iniciar código, pois a spec precisa passar por esclarecimento, plano e tarefas.
+A **Spec 001 — Identidade e acesso** possui especificação, ADR, plano e tarefas aprovados. Ela está pronta para implementação, mas o código ainda não foi autorizado pela estratégia atual de completar primeiro a base teórica.
+
+A próxima entrega documental é a **Spec 002 — Perfis**. Se a implementação for autorizada antes disso, ela começará pela tarefa `T-001-001` e permanecerá limitada à Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -193,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Criar `specs/001-identidade-acesso/spec.md` a partir dos requisitos `RF-IDA`, regras `BR-IDA`, telas `AUT` e requisitos não funcionais aplicáveis. Depois, esclarecer as decisões comportamentais antes de produzir o plano técnico.
+Criar `specs/002-perfis/spec.md` a partir dos requisitos `RF-PER`, regras `BR-PER`, telas `PER` e necessidades das personas. A implementação da Spec 001 permanece pronta, mas aguardará instrução explícita para iniciar código.
