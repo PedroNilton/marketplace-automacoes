@@ -15,3 +15,5 @@ npm run build --workspace backend
 ```
 
 Por padrão, a API inicia em `http://localhost:3001`. A verificação técnica de saúde está disponível em `GET /health`.
+
+Antes da primeira execução, prepare o `.env` da raiz conforme [`../docs/development/ENVIRONMENT-CONFIGURATION.md`](../docs/development/ENVIRONMENT-CONFIGURATION.md).
