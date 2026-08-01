@@ -19,7 +19,8 @@ Este índice apresenta a autoridade, o propósito e a ordem de leitura dos artef
 13. [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md)
 14. [`development/ENVIRONMENT-CONFIGURATION.md`](development/ENVIRONMENT-CONFIGURATION.md)
 15. [`development/QUALITY-COMMANDS.md`](development/QUALITY-COMMANDS.md)
-16. [`../specs/README.md`](../specs/README.md)
+16. [`development/PRISMA.md`](development/PRISMA.md)
+17. [`../specs/README.md`](../specs/README.md)
 
 ## Artefatos por área
 
@@ -72,6 +73,7 @@ Novos ADRs serão criados somente quando outra decisão técnica duradoura for n
 | [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md) | Ativo | Executar PostgreSQL e Mailpit localmente |
 | [`development/ENVIRONMENT-CONFIGURATION.md`](development/ENVIRONMENT-CONFIGURATION.md) | Ativo | Configurar e validar o ambiente da API |
 | [`development/QUALITY-COMMANDS.md`](development/QUALITY-COMMANDS.md) | Ativo | Executar formatação, lint, testes e build |
+| [`development/PRISMA.md`](development/PRISMA.md) | Ativo | Gerar o Prisma Client e testar a conexão PostgreSQL |
 
 ### Especificações
 
@@ -100,8 +102,8 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 
 - Fundação documental: concluída.
 - Spec 001 — Identidade e acesso: em implementação.
-- Código: workspace, infraestrutura, configuração tipada e comandos de qualidade concluídos.
-- Próxima tarefa: `T-001-007` — configurar Prisma no backend.
+- Código: workspace, infraestrutura, configuração tipada, qualidade e Prisma base concluídos.
+- Próxima tarefa: `T-001-008` — criar migration inicial de identidade.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.

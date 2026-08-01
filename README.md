@@ -14,6 +14,8 @@ A configuração tipada da API e o preparo do `.env` estão documentados em [`do
 
 Os comandos locais de formatação, lint, testes e build estão documentados em [`docs/development/QUALITY-COMMANDS.md`](docs/development/QUALITY-COMMANDS.md).
 
+A integração do backend com Prisma e PostgreSQL está documentada em [`docs/development/PRISMA.md`](docs/development/PRISMA.md).
+
 ## Objetivo do MVP
 
 Validar, em uma beta controlada, a menor jornada completa entre os dois lados do marketplace:
@@ -84,4 +86,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Configurar o Prisma e a conexão PostgreSQL no backend pela tarefa `T-001-007`, mantendo a sequência aprovada da Spec 001.
+Criar a migration inicial de identidade pela tarefa `T-001-008`, mantendo a sequência aprovada da Spec 001.

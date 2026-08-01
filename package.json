@@ -18,9 +18,12 @@
     "infra:status": "docker compose ps",
     "infra:up": "docker compose up -d",
     "lint": "npm run lint --workspaces --if-present",
-    "quality": "npm run format:check && npm run lint && npm run test:unit && npm run test:e2e && npm run build",
+    "prisma:generate": "npm run prisma:generate --workspace backend",
+    "prisma:validate": "npm run prisma:validate --workspace backend",
+    "quality": "npm run format:check && npm run prisma:validate && npm run prisma:generate && npm run lint && npm run test:unit && npm run test:integration && npm run test:e2e && npm run build",
     "test": "npm run test --workspaces --if-present",
     "test:e2e": "npm run test:e2e --workspaces --if-present",
+    "test:integration": "npm run test:integration --workspaces --if-present",
     "test:unit": "npm run test:unit --workspaces --if-present"
   },
   "engines": {

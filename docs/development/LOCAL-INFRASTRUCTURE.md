@@ -63,7 +63,7 @@ O Compose aceita as seguintes variáveis opcionais:
 | `MAILPIT_HTTP_PORT` | `8025` |
 | `MAILPIT_MAX_MESSAGES` | `500` |
 
-A configuração tipada das aplicações e o arquivo `.env.example` pertencem à tarefa `T-001-005`; não são antecipados nesta entrega.
+A configuração tipada das aplicações e o arquivo `.env.example` estão descritos em [`ENVIRONMENT-CONFIGURATION.md`](ENVIRONMENT-CONFIGURATION.md). O Prisma utiliza a mesma `DATABASE_URL` exclusivamente no backend.
 
 ## Verificação manual
 
@@ -73,5 +73,7 @@ Após `npm run infra:up`:
 2. Teste a conexão PostgreSQL pelo DBeaver usando os dados locais acima.
 3. Abra `http://127.0.0.1:8025` e confirme que a interface do Mailpit responde.
 4. Use `http://127.0.0.1:8025/api/v1/messages` para confirmar que a API local responde.
+
+O comando `npm run test:integration` também comprova a conexão da aplicação com o PostgreSQL sem criar tabelas ou dados.
 
 O Mailpit é somente um capturador local: nenhum e-mail recebido por ele é enviado a um destinatário real.
