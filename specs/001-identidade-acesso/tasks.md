@@ -69,7 +69,7 @@
 
 ### T-001-006 — Consolidar comandos de qualidade
 
-- [ ] Configurar formatação, lint, testes e build executáveis na raiz.
+- [x] Configurar formatação, lint, testes e build executáveis na raiz.
 - Referências: Constituição, Definition of Done.
 - Dependências: T-001-002, T-001-003.
 - Resultado: comandos separados por workspace e comando agregado.

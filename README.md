@@ -12,6 +12,8 @@ PostgreSQL e Mailpit já podem ser executados localmente com Docker Compose. As 
 
 A configuração tipada da API e o preparo do `.env` estão documentados em [`docs/development/ENVIRONMENT-CONFIGURATION.md`](docs/development/ENVIRONMENT-CONFIGURATION.md).
 
+Os comandos locais de formatação, lint, testes e build estão documentados em [`docs/development/QUALITY-COMMANDS.md`](docs/development/QUALITY-COMMANDS.md).
+
 ## Objetivo do MVP
 
 Validar, em uma beta controlada, a menor jornada completa entre os dois lados do marketplace:
@@ -82,4 +84,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Consolidar e validar os comandos de qualidade da tarefa `T-001-006`, mantendo a sequência aprovada da Spec 001.
+Configurar o Prisma e a conexão PostgreSQL no backend pela tarefa `T-001-007`, mantendo a sequência aprovada da Spec 001.
