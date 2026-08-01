@@ -1,6 +1,8 @@
 node_modules/
 coverage/
 backend/dist/
+backend/src/generated/prisma/
 frontend/.next/
+frontend/next-env.d.ts
 frontend/out/
 package-lock.json

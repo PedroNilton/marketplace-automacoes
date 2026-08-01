@@ -7,8 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"*.{ts,mjs,json}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"*.{ts,mjs,json}\"",
+    "format": "prettier --ignore-path ../.prettierignore --write \"src/**/*.{ts,tsx,css}\" \"*.{ts,mjs,json}\"",
+    "format:check": "prettier --ignore-path ../.prettierignore --check \"src/**/*.{ts,tsx,css}\" \"*.{ts,mjs,json}\"",
     "lint": "eslint"
   },
   "dependencies": {
