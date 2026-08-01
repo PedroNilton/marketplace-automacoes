@@ -79,7 +79,7 @@
 
 ### T-001-007 — Configurar Prisma no backend
 
-- [ ] Adicionar Prisma, conexão PostgreSQL e geração do cliente sem criar acesso a banco no frontend.
+- [x] Adicionar Prisma, conexão PostgreSQL e geração do cliente sem criar acesso a banco no frontend.
 - Referências: ADR-001, BR-SEC-001, RNF-CON-004.
 - Dependências: T-001-004, T-001-005.
 - Resultado: cliente é injetável na infraestrutura do backend.
