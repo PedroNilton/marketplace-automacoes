@@ -1,0 +1,24 @@
+name: marketplace-automacoes
+
+services:
+  postgres:
+    image: postgres:17.10-alpine3.23
+    container_name: marketplace-automacoes-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-marketplace_automacoes}
+      POSTGRES_USER: ${POSTGRES_USER:-marketplace}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marketplace_local}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  postgres_data:
+    name: marketplace-automacoes-postgres-data
