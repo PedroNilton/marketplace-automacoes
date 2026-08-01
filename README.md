@@ -10,6 +10,8 @@ O workspace inicial já contém aplicações executáveis mínimas em Next.js e 
 
 PostgreSQL e Mailpit já podem ser executados localmente com Docker Compose. As instruções estão em [`docs/development/LOCAL-INFRASTRUCTURE.md`](docs/development/LOCAL-INFRASTRUCTURE.md).
 
+A configuração tipada da API e o preparo do `.env` estão documentados em [`docs/development/ENVIRONMENT-CONFIGURATION.md`](docs/development/ENVIRONMENT-CONFIGURATION.md).
+
 ## Objetivo do MVP
 
 Validar, em uma beta controlada, a menor jornada completa entre os dois lados do marketplace:
@@ -80,4 +82,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Definir a configuração tipada e os exemplos de ambiente da tarefa `T-001-005`, mantendo a sequência aprovada da Spec 001.
+Consolidar e validar os comandos de qualidade da tarefa `T-001-006`, mantendo a sequência aprovada da Spec 001.

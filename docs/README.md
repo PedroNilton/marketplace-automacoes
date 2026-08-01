@@ -17,7 +17,8 @@ Este índice apresenta a autoridade, o propósito e a ordem de leitura dos artef
 11. [`architecture/ADR-001-stack-inicial.md`](architecture/ADR-001-stack-inicial.md)
 12. [`SDD-ROADMAP.md`](SDD-ROADMAP.md)
 13. [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md)
-14. [`../specs/README.md`](../specs/README.md)
+14. [`development/ENVIRONMENT-CONFIGURATION.md`](development/ENVIRONMENT-CONFIGURATION.md)
+15. [`../specs/README.md`](../specs/README.md)
 
 ## Artefatos por área
 
@@ -68,6 +69,7 @@ Novos ADRs serão criados somente quando outra decisão técnica duradoura for n
 | Documento | Estado | Finalidade |
 |---|---|---|
 | [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md) | Ativo | Executar PostgreSQL e Mailpit localmente |
+| [`development/ENVIRONMENT-CONFIGURATION.md`](development/ENVIRONMENT-CONFIGURATION.md) | Ativo | Configurar e validar o ambiente da API |
 
 ### Especificações
 
@@ -96,8 +98,8 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 
 - Fundação documental: concluída.
 - Spec 001 — Identidade e acesso: em implementação.
-- Código: workspace e infraestrutura local concluídos.
-- Próxima tarefa: `T-001-005` — configuração tipada e exemplos de ambiente.
+- Código: workspace, infraestrutura e configuração tipada concluídos.
+- Próxima tarefa: `T-001-006` — consolidar os comandos de qualidade.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.

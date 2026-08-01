@@ -61,7 +61,7 @@
 
 ### T-001-005 — Definir configuração e exemplos de ambiente
 
-- [ ] Criar validação tipada de configuração para API, banco, cookie, origens, SMTP, HMAC e tempos.
+- [x] Criar validação tipada de configuração para API, banco, cookie, origens, SMTP, HMAC e tempos.
 - Referências: ADR-002, plano §11, BR-SEC-003.
 - Dependências: T-001-002, T-001-004.
 - Resultado: `.env.example` contém somente nomes e valores não secretos; configuração inválida impede inicialização.
