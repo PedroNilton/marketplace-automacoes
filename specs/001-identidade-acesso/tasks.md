@@ -29,7 +29,7 @@
 
 ### T-001-001 — Preparar workspace Node.js
 
-- [ ] Criar `package.json` privado na raiz com workspaces `frontend` e `backend` e versão suportada do Node.js.
+- [x] Criar `package.json` privado na raiz com workspaces `frontend` e `backend` e versão suportada do Node.js.
 - Referências: ADR-001, princípio de simplicidade.
 - Dependências: nenhuma.
 - Resultado: um lockfile único e scripts raiz para lint, teste, build e desenvolvimento.
@@ -37,7 +37,7 @@
 
 ### T-001-002 — Criar aplicação NestJS mínima
 
-- [ ] Gerar `backend/` com TypeScript estrito e sem funcionalidade de exemplo desnecessária.
+- [x] Gerar `backend/` com TypeScript estrito e sem funcionalidade de exemplo desnecessária.
 - Referências: ADR-001, plano §3.
 - Dependências: T-001-001.
 - Resultado: API inicia localmente e responde somente a verificação técnica de saúde mínima.
@@ -45,7 +45,7 @@
 
 ### T-001-003 — Criar aplicação Next.js mínima `P`
 
-- [ ] Gerar `frontend/` com App Router, TypeScript e Tailwind, removendo conteúdo demonstrativo.
+- [x] Gerar `frontend/` com App Router, TypeScript e Tailwind, removendo conteúdo demonstrativo.
 - Referências: ADR-001, telas AUT.
 - Dependências: T-001-001.
 - Resultado: aplicação web inicia com layout mínimo e nenhuma regra de identidade simulada.

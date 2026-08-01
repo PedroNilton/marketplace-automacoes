@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+dist/
+coverage/
+out/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test artifacts
+playwright-report/
+test-results/
+
+# Local databases and volumes
+*.db
+*.sqlite
+.docker-data/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# TypeScript and framework caches
+*.tsbuildinfo
+.turbo/
+.eslintcache
+
+# Temporary files
+tmp/
+temp/
