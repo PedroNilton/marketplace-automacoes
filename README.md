@@ -6,7 +6,9 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 
 O projeto iniciou a **implementação da Spec 001 — Identidade e acesso** e segue **Spec-Driven Development (SDD)**: comportamento, regras, arquitetura, critérios de aceite e tarefas são definidos antes do código.
 
-O workspace inicial já contém aplicações executáveis mínimas em Next.js e NestJS. As próximas entregas implementarão a infraestrutura local e os comportamentos aprovados da Spec 001 em pequenos incrementos testados.
+O workspace inicial já contém aplicações executáveis mínimas em Next.js e NestJS. Os próximos incrementos implementarão os comportamentos aprovados da Spec 001 em pequenas entregas testadas.
+
+PostgreSQL e Mailpit já podem ser executados localmente com Docker Compose. As instruções estão em [`docs/development/LOCAL-INFRASTRUCTURE.md`](docs/development/LOCAL-INFRASTRUCTURE.md).
 
 ## Objetivo do MVP
 
@@ -52,7 +54,7 @@ A decisão completa está em [`docs/architecture/ADR-001-stack-inicial.md`](docs
 
 O índice completo está em [`docs/README.md`](docs/README.md).
 
-## Estrutura planejada
+## Estrutura atual
 
 ```text
 marketplace-automacoes/
@@ -60,6 +62,7 @@ marketplace-automacoes/
 ├── frontend/      # Aplicação Next.js
 ├── docs/          # Produto, domínio, UX e arquitetura
 ├── specs/         # spec.md, plan.md e tasks.md por capacidade
+├── compose.yaml   # PostgreSQL e Mailpit locais
 └── README.md
 ```
 
@@ -77,4 +80,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Preparar PostgreSQL e Mailpit para o ambiente local, conforme a tarefa `T-001-004`, e então avançar pela sequência aprovada da Spec 001.
+Definir a configuração tipada e os exemplos de ambiente da tarefa `T-001-005`, mantendo a sequência aprovada da Spec 001.

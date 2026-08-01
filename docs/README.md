@@ -16,7 +16,8 @@ Este índice apresenta a autoridade, o propósito e a ordem de leitura dos artef
 10. [`product/REQUIREMENTS-CATALOG.md`](product/REQUIREMENTS-CATALOG.md)
 11. [`architecture/ADR-001-stack-inicial.md`](architecture/ADR-001-stack-inicial.md)
 12. [`SDD-ROADMAP.md`](SDD-ROADMAP.md)
-13. [`../specs/README.md`](../specs/README.md)
+13. [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md)
+14. [`../specs/README.md`](../specs/README.md)
 
 ## Artefatos por área
 
@@ -62,6 +63,12 @@ Wireframes ainda não existem. Eles serão criados por fatia depois da aprovaç�
 
 Novos ADRs serão criados somente quando outra decisão técnica duradoura for necessária.
 
+### Desenvolvimento
+
+| Documento | Estado | Finalidade |
+|---|---|---|
+| [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md) | Ativo | Executar PostgreSQL e Mailpit localmente |
+
 ### Especificações
 
 Os artefatos funcionais residem em [`../specs/`](../specs/). Cada capacidade utiliza:
@@ -88,9 +95,9 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 ## Estado resumido
 
 - Fundação documental: concluída.
-- Spec 001 — Identidade e acesso: pronta para implementação.
-- Código: ainda não iniciado.
-- Próxima entrega documental: `specs/002-perfis/spec.md`.
+- Spec 001 — Identidade e acesso: em implementação.
+- Código: workspace e infraestrutura local concluídos.
+- Próxima tarefa: `T-001-005` — configuração tipada e exemplos de ambiente.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.
