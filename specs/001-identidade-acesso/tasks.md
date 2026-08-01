@@ -53,7 +53,7 @@
 
 ### T-001-004 — Preparar infraestrutura local `P`
 
-- [ ] Definir ambiente local reproduzível para PostgreSQL e Mailpit, com volumes e portas explicitamente nomeados.
+- [x] Definir ambiente local reproduzível para PostgreSQL e Mailpit, com volumes e portas explicitamente nomeados.
 - Referências: plano §§12 e 23.
 - Dependências: T-001-001.
 - Resultado: banco e capturador SMTP iniciam sem usar serviço BaaS.
