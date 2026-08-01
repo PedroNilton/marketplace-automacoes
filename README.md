@@ -4,9 +4,9 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 
 ## Estado do projeto
 
-O projeto está na fase de **especificação do MVP** e segue **Spec-Driven Development (SDD)**: comportamento, regras, arquitetura, critérios de aceite e tarefas são definidos antes do código.
+O projeto iniciou a **implementação da Spec 001 — Identidade e acesso** e segue **Spec-Driven Development (SDD)**: comportamento, regras, arquitetura, critérios de aceite e tarefas são definidos antes do código.
 
-Ainda não existe aplicação executável neste repositório. A Spec 001 — Identidade e acesso já possui especificação, ADR, plano e tarefas aprovados e está pronta para implementação quando houver autorização. A próxima entrega exclusivamente documental é a Spec 002 — Perfis.
+O workspace inicial já contém aplicações executáveis mínimas em Next.js e NestJS. As próximas entregas implementarão a infraestrutura local e os comportamentos aprovados da Spec 001 em pequenos incrementos testados.
 
 ## Objetivo do MVP
 
@@ -56,8 +56,8 @@ O índice completo está em [`docs/README.md`](docs/README.md).
 
 ```text
 marketplace-automacoes/
-├── backend/       # API NestJS, criada após as specs fundamentais
-├── frontend/      # Aplicação Next.js, criada após as specs fundamentais
+├── backend/       # API NestJS
+├── frontend/      # Aplicação Next.js
 ├── docs/          # Produto, domínio, UX e arquitetura
 ├── specs/         # spec.md, plan.md e tasks.md por capacidade
 └── README.md
@@ -77,4 +77,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Escolher entre iniciar a implementação da Spec 001 ou continuar a preparação documental com a Spec 002 — Perfis. Pela estratégia atual de teoria antes do código, a sequência recomendada é preparar a Spec 002.
+Preparar PostgreSQL e Mailpit para o ambiente local, conforme a tarefa `T-001-004`, e então avançar pela sequência aprovada da Spec 001.
