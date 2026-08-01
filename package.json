@@ -11,6 +11,8 @@
     "build": "npm run build --workspaces --if-present",
     "dev:backend": "npm run start:dev --workspace backend",
     "dev:frontend": "npm run dev --workspace frontend",
+    "format": "npm run format --workspaces --if-present",
+    "format:check": "npm run format:check --workspaces --if-present",
     "infra:down": "docker compose down",
     "infra:logs": "docker compose logs -f",
     "infra:status": "docker compose ps",
@@ -29,6 +31,9 @@
       "postcss": "8.5.25",
       "sharp": "0.35.3"
     }
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
   },
   "packageManager": "npm@10.9.2"
 }

@@ -1,0 +1,6 @@
+node_modules/
+coverage/
+backend/dist/
+frontend/.next/
+frontend/out/
+package-lock.json

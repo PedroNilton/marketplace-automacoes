@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Marketplace de Automações",
+  title: 'Marketplace de Automações',
   description:
-    "Marketplace brasileiro que conecta compradores e especialistas em automação.",
+    'Marketplace brasileiro que conecta compradores e especialistas em automação.',
 };
 
 export default function RootLayout({
