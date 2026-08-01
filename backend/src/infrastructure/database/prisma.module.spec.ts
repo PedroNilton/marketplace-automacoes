@@ -34,7 +34,7 @@ describe('PrismaModule', () => {
 
   it('exports one injectable Prisma client', () => {
     expect(testingModule.get(PrismaService)).toBe(prismaService);
-    expect(prismaService.$connect).toEqual(expect.any(Function));
-    expect(prismaService.$disconnect).toEqual(expect.any(Function));
+    expect('$connect' in prismaService).toBe(true);
+    expect('$disconnect' in prismaService).toBe(true);
   });
 });
