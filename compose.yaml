@@ -19,6 +19,26 @@ services:
       retries: 10
       start_period: 10s
 
+  mailpit:
+    image: axllent/mailpit:v1.30.0
+    container_name: marketplace-automacoes-mailpit
+    environment:
+      MP_DATABASE: /data/mailpit.db
+      MP_MAX_MESSAGES: ${MAILPIT_MAX_MESSAGES:-500}
+    ports:
+      - "127.0.0.1:${MAILPIT_SMTP_PORT:-1025}:1025"
+      - "127.0.0.1:${MAILPIT_HTTP_PORT:-8025}:8025"
+    volumes:
+      - mailpit_data:/data
+    healthcheck:
+      test: ["CMD", "/mailpit", "readyz"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
 volumes:
   postgres_data:
     name: marketplace-automacoes-postgres-data
+  mailpit_data:
+    name: marketplace-automacoes-mailpit-data
