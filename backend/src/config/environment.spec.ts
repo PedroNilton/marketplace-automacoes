@@ -84,6 +84,16 @@ describe('validateEnvironment', () => {
     }
   });
 
+  it('rejects an absent HMAC secret', () => {
+    const environmentWithoutSecret = { ...validBaseEnvironment };
+    delete (environmentWithoutSecret as Partial<typeof validBaseEnvironment>)
+      .AUTH_HMAC_SECRET;
+
+    expect(() => validateEnvironment(environmentWithoutSecret)).toThrow(
+      /AUTH_HMAC_SECRET:/,
+    );
+  });
+
   it('rejects inconsistent session durations', () => {
     expect(() =>
       validateEnvironment({
