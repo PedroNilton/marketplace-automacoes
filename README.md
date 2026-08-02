@@ -16,6 +16,8 @@ Os comandos locais de formatação, lint, testes e build estão documentados em 
 
 A integração do backend com Prisma e PostgreSQL está documentada em [`docs/development/PRISMA.md`](docs/development/PRISMA.md).
 
+O processo de evolução do banco está documentado em [`docs/development/DATABASE-MIGRATIONS.md`](docs/development/DATABASE-MIGRATIONS.md).
+
 ## Objetivo do MVP
 
 Validar, em uma beta controlada, a menor jornada completa entre os dois lados do marketplace:
@@ -86,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Criar a migration inicial de identidade pela tarefa `T-001-008`, mantendo a sequência aprovada da Spec 001.
+Implementar o repositório Prisma base pela tarefa `T-001-009`, mantendo a sequência aprovada da Spec 001.
