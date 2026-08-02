@@ -1,9 +1,120 @@
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated/prisma"
-  moduleFormat = "cjs"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  moduleFormat    = "cjs"
+  previewFeatures = ["partialIndexes"]
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DEACTIVATED
+
+  @@map("user_status")
+}
+
+enum PlatformRole {
+  MEMBER
+  ADMIN
+
+  @@map("platform_role")
+}
+
+enum SessionRevokeReason {
+  LOGOUT
+  PASSWORD_RESET
+  ACCOUNT_SUSPENSION
+  SECURITY
+
+  @@map("session_revoke_reason")
+}
+
+enum AuthTokenPurpose {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+
+  @@map("auth_token_purpose")
+}
+
+enum AuthRateLimitAction {
+  LOGIN
+  REGISTRATION
+  EMAIL_RESEND
+  PASSWORD_RESET
+  AUTH_TOKEN_CONFIRMATION
+
+  @@map("auth_rate_limit_action")
+}
+
+model User {
+  id              String       @id @default(uuid()) @db.Uuid
+  displayName     String       @map("display_name") @db.VarChar(100)
+  email           String       @unique(map: "users_email_key") @db.VarChar(320)
+  passwordHash    String       @map("password_hash") @db.Text
+  status          UserStatus   @default(ACTIVE)
+  emailVerifiedAt DateTime?    @map("email_verified_at") @db.Timestamptz(6)
+  platformRole    PlatformRole @default(MEMBER) @map("platform_role")
+  termsVersion    String       @map("terms_version") @db.VarChar(32)
+  privacyVersion  String       @map("privacy_version") @db.VarChar(32)
+  legalAcceptedAt DateTime     @map("legal_accepted_at") @db.Timestamptz(6)
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime     @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  sessions        Session[]
+  authTokens      AuthToken[]
+
+  @@map("users")
+}
+
+model Session {
+  id                String               @id @default(uuid()) @db.Uuid
+  userId            String               @map("user_id") @db.Uuid
+  tokenDigest       String               @unique(map: "sessions_token_digest_key") @map("token_digest") @db.Char(64)
+  csrfDigest        String               @map("csrf_digest") @db.Char(64)
+  createdAt         DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastSeenAt        DateTime             @default(now()) @map("last_seen_at") @db.Timestamptz(6)
+  idleExpiresAt     DateTime             @map("idle_expires_at") @db.Timestamptz(6)
+  absoluteExpiresAt DateTime             @map("absolute_expires_at") @db.Timestamptz(6)
+  revokedAt         DateTime?            @map("revoked_at") @db.Timestamptz(6)
+  revokeReason      SessionRevokeReason? @map("revoke_reason")
+  user              User                 @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  @@index([userId], map: "sessions_user_id_idx")
+  @@index([idleExpiresAt], map: "sessions_idle_expires_at_idx")
+  @@index([absoluteExpiresAt], map: "sessions_absolute_expires_at_idx")
+  @@index([userId], map: "sessions_active_user_id_idx", where: { revokedAt: null })
+  @@map("sessions")
+}
+
+model AuthToken {
+  id            String           @id @default(uuid()) @db.Uuid
+  userId        String           @map("user_id") @db.Uuid
+  purpose       AuthTokenPurpose
+  tokenDigest   String           @unique(map: "auth_tokens_token_digest_key") @map("token_digest") @db.Char(64)
+  createdAt     DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  expiresAt     DateTime         @map("expires_at") @db.Timestamptz(6)
+  consumedAt    DateTime?        @map("consumed_at") @db.Timestamptz(6)
+  invalidatedAt DateTime?        @map("invalidated_at") @db.Timestamptz(6)
+  user          User             @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  @@index([userId], map: "auth_tokens_user_id_idx")
+  @@index([expiresAt], map: "auth_tokens_expires_at_idx")
+  @@index([userId, purpose], map: "auth_tokens_pending_user_purpose_idx", where: { consumedAt: null, invalidatedAt: null })
+  @@map("auth_tokens")
+}
+
+model AuthRateLimit {
+  action          AuthRateLimitAction
+  keyDigest       String              @map("key_digest") @db.Char(64)
+  windowStartedAt DateTime            @map("window_started_at") @db.Timestamptz(6)
+  attemptCount    Int                 @default(0) @map("attempt_count")
+  blockedUntil    DateTime?           @map("blocked_until") @db.Timestamptz(6)
+  updatedAt       DateTime            @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@id([action, keyDigest], map: "auth_rate_limits_pkey")
+  @@index([updatedAt], map: "auth_rate_limits_updated_at_idx")
+  @@map("auth_rate_limits")
 }
