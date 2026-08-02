@@ -18,6 +18,8 @@
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:migrate:status": "prisma migrate status",
     "prisma:validate": "prisma validate",
     "test": "npm run test:unit",
     "test:unit": "jest",
