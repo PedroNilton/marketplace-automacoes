@@ -11,6 +11,8 @@ npm run dev:backend
 npm run format:check --workspace backend
 npm run prisma:validate
 npm run prisma:generate
+npm run prisma:migrate:deploy
+npm run prisma:migrate:status
 npm run lint --workspace backend
 npm run test:unit --workspace backend
 npm run test:integration
@@ -25,3 +27,5 @@ Antes da primeira execução, prepare o `.env` da raiz conforme [`../docs/develo
 O fluxo completo de validação está em [`../docs/development/QUALITY-COMMANDS.md`](../docs/development/QUALITY-COMMANDS.md).
 
 A integração com PostgreSQL está em [`../docs/development/PRISMA.md`](../docs/development/PRISMA.md).
+
+O processo de migrations está em [`../docs/development/DATABASE-MIGRATIONS.md`](../docs/development/DATABASE-MIGRATIONS.md).

@@ -63,7 +63,7 @@ npm run build --workspace frontend
 
 Workspaces sem determinado script são ignorados pelos comandos agregados com `--if-present`. A ausência de uma suíte ainda não implementada não produz um falso erro.
 
-O teste de integração exige que o PostgreSQL local esteja iniciado e saudável conforme [`LOCAL-INFRASTRUCTURE.md`](LOCAL-INFRASTRUCTURE.md).
+O teste de integração exige que o PostgreSQL local esteja iniciado, saudável e com as migrations aplicadas conforme [`DATABASE-MIGRATIONS.md`](DATABASE-MIGRATIONS.md).
 
 ## Regra de contribuição
 

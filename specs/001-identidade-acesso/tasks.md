@@ -87,7 +87,7 @@
 
 ### T-001-008 — Criar migration inicial de identidade
 
-- [ ] Modelar `users`, `sessions`, `auth_tokens` e `auth_rate_limits` com enums, FKs, unicidade, índices e timestamps do plano.
+- [x] Modelar `users`, `sessions`, `auth_tokens` e `auth_rate_limits` com enums, FKs, unicidade, índices e timestamps do plano.
 - Referências: plano §9, BR-IDA-001/002/013.
 - Dependências: T-001-007.
 - Resultado: migration versionada, sem alteração manual pelo DBeaver.
