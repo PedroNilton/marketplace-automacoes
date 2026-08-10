@@ -18,14 +18,36 @@ export class PrismaErrorMapper {
   }
 
   private readFields(error: Prisma.PrismaClientKnownRequestError): string[] {
-    const target = error.meta?.target;
+    const directFields = this.readStringList(error.meta?.target);
 
-    if (Array.isArray(target)) {
-      return target.filter(
+    if (directFields.length > 0) {
+      return directFields;
+    }
+
+    const adapterError = error.meta?.driverAdapterError;
+
+    if (!this.isRecord(adapterError) || !this.isRecord(adapterError.cause)) {
+      return [];
+    }
+
+    const constraint = adapterError.cause.constraint;
+
+    return this.isRecord(constraint)
+      ? this.readStringList(constraint.fields)
+      : [];
+  }
+
+  private readStringList(value: unknown): string[] {
+    if (Array.isArray(value)) {
+      return value.filter(
         (field): field is string => typeof field === 'string',
       );
     }
 
-    return typeof target === 'string' ? [target] : [];
+    return typeof value === 'string' ? [value] : [];
+  }
+
+  private isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null;
   }
 }
