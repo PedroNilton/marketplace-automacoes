@@ -104,8 +104,8 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 
 - Fundação documental: concluída.
 - Spec 001 — Identidade e acesso: em implementação.
-- Código: fundação executável e migration inicial de identidade concluídas.
-- Próxima tarefa: `T-001-009` — implementar repositório Prisma base.
+- Código: fundação executável, migration de identidade e repositório Prisma base concluídos.
+- Próxima tarefa: `T-001-010` — implementar normalização e valor de e-mail.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.

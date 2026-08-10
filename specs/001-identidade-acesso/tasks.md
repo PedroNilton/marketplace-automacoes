@@ -95,7 +95,7 @@
 
 ### T-001-009 — Implementar repositório Prisma base
 
-- [ ] Encapsular transações e mapeamento de erros conhecidos, inclusive violação de e-mail único.
+- [x] Encapsular transações e mapeamento de erros conhecidos, inclusive violação de e-mail único.
 - Referências: AC-001-01/02, plano §10.
 - Dependências: T-001-008.
 - Resultado: casos de uso não importam tipos Prisma diretamente.

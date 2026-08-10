@@ -88,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o repositório Prisma base pela tarefa `T-001-009`, mantendo a sequência aprovada da Spec 001.
+Implementar a normalização e o valor de e-mail pela tarefa `T-001-010`, mantendo a sequência aprovada da Spec 001.

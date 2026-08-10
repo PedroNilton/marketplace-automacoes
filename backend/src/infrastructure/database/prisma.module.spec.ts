@@ -1,5 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { TransactionManager } from '../../application/ports/transaction-manager';
 import { Environment } from '../../config/environment';
 import { PrismaModule } from './prisma.module';
 import { PrismaService } from './prisma.service';
@@ -34,6 +35,7 @@ describe('PrismaModule', () => {
 
   it('exports one injectable Prisma client', () => {
     expect(testingModule.get(PrismaService)).toBe(prismaService);
+    expect(testingModule.get(TransactionManager)).toBeDefined();
     expect('$connect' in prismaService).toBe(true);
     expect('$disconnect' in prismaService).toBe(true);
   });
