@@ -105,6 +105,17 @@ describe('validateEnvironment', () => {
     ).toThrow(/SESSION_IDLE_TTL:|SESSION_ACTIVITY_TOUCH_INTERVAL:/);
   });
 
+  it('rejects Argon2id parameters below the approved baseline', () => {
+    expect(() =>
+      validateEnvironment({
+        ...validBaseEnvironment,
+        ARGON2_MEMORY_KIB: '19455',
+        ARGON2_ITERATIONS: '1',
+        ARGON2_PARALLELISM: '0',
+      }),
+    ).toThrow(/ARGON2_MEMORY_KIB:|ARGON2_ITERATIONS:|ARGON2_PARALLELISM:/);
+  });
+
   it('requires secure HTTPS cookie settings in production', () => {
     expect(() =>
       validateEnvironment({
