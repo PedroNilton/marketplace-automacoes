@@ -1,8 +1,5 @@
 export type InvalidPasswordReason =
-  | 'TOO_SHORT'
-  | 'TOO_LONG'
-  | 'CONFIRMATION_MISMATCH'
-  | 'BLOCKED';
+  'TOO_SHORT' | 'TOO_LONG' | 'CONFIRMATION_MISMATCH' | 'BLOCKED';
 
 export class InvalidPasswordError extends Error {
   readonly code = 'INVALID_PASSWORD';
