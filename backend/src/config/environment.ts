@@ -7,6 +7,9 @@ const environmentBooleanSchema = z
   .transform((value) => value === 'true');
 
 const positiveIntegerSchema = z.coerce.number().int().positive();
+const argon2MemorySchema = z.coerce.number().int().min(19_456);
+const argon2IterationsSchema = z.coerce.number().int().min(2);
+const argon2ParallelismSchema = z.coerce.number().int().min(1);
 
 const databaseUrlSchema = z
   .string()
@@ -55,9 +58,9 @@ export const environmentSchema = z
     PASSWORD_RESET_MAX_PER_HOUR: positiveIntegerSchema.default(5),
     LOGIN_PROGRESSIVE_DELAY_AFTER: positiveIntegerSchema.default(5),
     LOGIN_TEMP_BLOCK_MAX: positiveIntegerSchema.default(900),
-    ARGON2_MEMORY_KIB: positiveIntegerSchema.default(19456),
-    ARGON2_ITERATIONS: positiveIntegerSchema.default(2),
-    ARGON2_PARALLELISM: positiveIntegerSchema.default(1),
+    ARGON2_MEMORY_KIB: argon2MemorySchema.default(19456),
+    ARGON2_ITERATIONS: argon2IterationsSchema.default(2),
+    ARGON2_PARALLELISM: argon2ParallelismSchema.default(1),
   })
   .superRefine((environment, context) => {
     if (environment.SESSION_IDLE_TTL > environment.SESSION_ABSOLUTE_TTL) {
