@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-011 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valor de e-mail e política/hash de senha.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-012 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio e tokens seguros.
 
-O próximo incremento executável é `T-001-012` — relógio e tokens seguros. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-013` — validação de retorno interno. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-012` na Spec 001: abstração de relógio, geração CSPRNG de 256 bits, digest e comparação segura. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-013` na Spec 001: aceitar somente caminhos internos relativos e aplicar um destino seguro quando o retorno for inválido. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.

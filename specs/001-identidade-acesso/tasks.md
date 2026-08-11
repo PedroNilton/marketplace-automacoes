@@ -121,7 +121,7 @@
 
 ### T-001-012 — Implementar relógio e tokens seguros `P`
 
-- [ ] Criar abstrações de tempo, gerador CSPRNG, digest e comparação segura.
+- [x] Criar abstrações de tempo, gerador CSPRNG, digest e comparação segura.
 - Referências: AC-001-05/06/15/16, ADR-002.
 - Dependências: T-001-005.
 - Resultado: tokens de sessão e e-mail possuem 256 bits e valores brutos não são persistidos.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-011. O próximo incremento é T-001-012 — implementar relógio, geração CSPRNG, digest e comparação segura para tokens.
+A implementação concluiu as tarefas T-001-001 a T-001-012. O próximo incremento é T-001-013 — validar destinos internos de retorno sem permitir redirecionamento aberto.
