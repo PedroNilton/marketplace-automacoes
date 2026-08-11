@@ -29,18 +29,18 @@ describe('PasswordPolicy', () => {
     ['TOO_SHORT', 'abcdefghijklmn'],
     ['TOO_LONG', 'a'.repeat(129)],
   ] as const)('rejects passwords with reason %s', (reason, password) => {
-    expect(() => policy.validate(password, password)).toThrow(
-      expect.objectContaining<Partial<InvalidPasswordError>>({ reason }),
+    expectInvalidPasswordReason(
+      () => policy.validate(password, password),
+      reason,
     );
   });
 
   it('requires an exact confirmation without transforming the password', () => {
     const password = ' Senha válida 123 ';
 
-    expect(() => policy.validate(password, password.trim())).toThrow(
-      expect.objectContaining<Partial<InvalidPasswordError>>({
-        reason: 'CONFIRMATION_MISMATCH',
-      }),
+    expectInvalidPasswordReason(
+      () => policy.validate(password, password.trim()),
+      'CONFIRMATION_MISMATCH',
     );
   });
 
@@ -68,3 +68,16 @@ describe('PasswordPolicy', () => {
     expect(blocklist.contains).toHaveBeenCalledWith(password);
   });
 });
+
+function expectInvalidPasswordReason(
+  action: () => void,
+  reason: InvalidPasswordError['reason'],
+): void {
+  try {
+    action();
+    throw new Error('Expected password validation to fail');
+  } catch (error) {
+    expect(error).toBeInstanceOf(InvalidPasswordError);
+    expect(error).toMatchObject({ reason });
+  }
+}
