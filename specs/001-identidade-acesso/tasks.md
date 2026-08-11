@@ -113,7 +113,7 @@
 
 ### T-001-011 — Implementar política e hash de senha `P`
 
-- [ ] Aplicar 15–128 caracteres, Unicode, confirmação, blocklist local e Argon2id configurável.
+- [x] Aplicar 15–128 caracteres, Unicode, confirmação, blocklist local e Argon2id configurável.
 - Referências: SPEC-001-R01 a R05, AC-001-03/04, ADR-002.
 - Dependências: T-001-005.
 - Resultado: senha nunca é truncada nem enviada para consulta externa.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A Spec 001 está pronta para implementação. O primeiro trabalho de código, quando autorizado, será T-001-001 — preparar o workspace Node.js. Até essa autorização, o repositório permanece na fase documental.
+A implementação concluiu as tarefas T-001-001 a T-001-011. O próximo incremento é T-001-012 — implementar relógio, geração CSPRNG, digest e comparação segura para tokens.

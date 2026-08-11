@@ -614,4 +614,4 @@ A decomposição exata será registrada em `tasks.md`; esta lista não autoriza 
 
 ## 25. Próxima etapa
 
-Decompor este plano em `tasks.md`, mantendo tarefas pequenas, ordenadas e vinculadas aos critérios. Somente após a aprovação das tarefas a Spec 001 estará pronta para implementação.
+O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-011 estão concluídas; a próxima etapa é T-001-012 — relógio e tokens seguros.

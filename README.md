@@ -88,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar a política e o hash de senha pela tarefa `T-001-011`, mantendo a sequência aprovada da Spec 001.
+Implementar relógio e tokens seguros pela tarefa `T-001-012`, mantendo a sequência aprovada da Spec 001.

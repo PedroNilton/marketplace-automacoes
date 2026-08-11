@@ -42,6 +42,7 @@ As durações do `.env.example` são expressas em segundos e são convertidas pa
 - A duração ociosa da sessão não pode superar a duração absoluta.
 - O intervalo de atualização de atividade não pode superar a duração ociosa.
 - `SameSite=none` exige cookie seguro.
+- Argon2id aceita no mínimo 19.456 KiB de memória, 2 iterações e paralelismo 1; os valores podem ser elevados após benchmark, mas não reduzidos abaixo dessa base.
 
 Em produção, regras adicionais impedem que exceções locais sejam herdadas:
 
@@ -56,6 +57,6 @@ O `ConfigModule` valida o ambiente uma única vez e o `ConfigService` expõe som
 
 Erros de configuração informam os nomes dos campos inválidos, mas não reproduzem seus valores; isso evita incluir segredos em mensagens e logs.
 
-## Limites desta entrega
+## Estado da implementação
 
-Esta configuração prepara as dependências da Spec 001. Prisma, migrations, cookies reais, CORS, hashing, sessões e envio de e-mail serão implementados apenas nas tarefas correspondentes.
+Prisma, migrations e hashing Argon2id já consomem essa configuração. Cookies reais, CORS, sessões e envio de e-mail serão implementados apenas nas tarefas correspondentes.
