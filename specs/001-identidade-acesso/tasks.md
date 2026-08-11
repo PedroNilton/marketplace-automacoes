@@ -105,7 +105,7 @@
 
 ### T-001-010 — Implementar normalização e valor de e-mail
 
-- [ ] Centralizar trim, normalização aprovada, validação de comprimento/formato e comparação.
+- [x] Centralizar trim, normalização aprovada, validação de comprimento/formato e comparação.
 - Referências: BR-IDA-001, AC-001-02.
 - Dependências: T-001-002.
 - Resultado: cadastro, login, reenvio e recuperação usam a mesma política.

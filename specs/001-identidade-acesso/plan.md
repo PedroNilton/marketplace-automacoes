@@ -302,7 +302,7 @@ Mensagens públicas não conterão stack trace, nome de tabela, SQL, hash, token
 | `legal_accepted_at` | `timestamptz` | Evidência temporal |
 | `created_at`/`updated_at` | `timestamptz` | Auditoria básica |
 
-Normalização do e-mail será executada em uma função única antes de busca ou persistência. A constraint única será a defesa final contra cadastros concorrentes.
+Normalização do e-mail será executada por um único objeto de valor antes de busca ou persistência. A política remove espaços externos, converte o endereço completo para minúsculas, limita local/domínio/endereço a 64/255/320 caracteres e valida um formato prático com domínio qualificado. Comparação usa somente o valor normalizado. A constraint única será a defesa final contra cadastros concorrentes.
 
 ### 9.2 `sessions`
 
