@@ -1,8 +1,8 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.0.0
+- **Versão:** 1.1.0
 - **Status:** Ativo
-- **Data:** 31 de julho de 2026
+- **Data:** 11 de agosto de 2026
 - **Método:** Spec-Driven Development
 
 ## 1. Objetivo
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** possui especificação, ADR, plano e tarefas aprovados. Ela está pronta para implementação, mas o código ainda não foi autorizado pela estratégia atual de completar primeiro a base teórica.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-011 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valor de e-mail e política/hash de senha.
 
-A próxima entrega documental é a **Spec 002 — Perfis**. Se a implementação for autorizada antes disso, ela começará pela tarefa `T-001-001` e permanecerá limitada à Spec 001.
+O próximo incremento executável é `T-001-012` — relógio e tokens seguros. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Criar `specs/002-perfis/spec.md` a partir dos requisitos `RF-PER`, regras `BR-PER`, telas `PER` e necessidades das personas. A implementação da Spec 001 permanece pronta, mas aguardará instrução explícita para iniciar código.
+Implementar `T-001-012` na Spec 001: abstração de relógio, geração CSPRNG de 256 bits, digest e comparação segura. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
