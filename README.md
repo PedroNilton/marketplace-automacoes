@@ -88,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar validação de retorno interno pela tarefa `T-001-013`, mantendo a sequência aprovada da Spec 001.
+Implementar o `UserRepository` pela tarefa `T-001-014`, mantendo a sequência aprovada da Spec 001.
