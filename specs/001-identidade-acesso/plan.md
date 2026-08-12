@@ -614,4 +614,4 @@ A decomposição exata será registrada em `tasks.md`; esta lista não autoriza 
 
 ## 25. Próxima etapa
 
-O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-012 estão concluídas; a próxima etapa é T-001-013 — validação de retorno interno.
+O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-013 estão concluídas; a próxima etapa é T-001-014 — implementação do `UserRepository`.

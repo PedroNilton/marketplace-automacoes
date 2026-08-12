@@ -104,8 +104,8 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 
 - Fundação documental: concluída.
 - Spec 001 — Identidade e acesso: em implementação.
-- Código: fundação executável, persistência base, valores de e-mail/senha, relógio e tokens seguros concluídos.
-- Próxima tarefa: `T-001-013` — implementar validação de retorno interno.
+- Código: fundação executável, persistência base, valores de e-mail/senha, relógio, tokens seguros e retorno interno validado concluídos.
+- Próxima tarefa: `T-001-014` — implementar o `UserRepository`.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.

@@ -129,7 +129,7 @@
 
 ### T-001-013 — Implementar validação de retorno interno `P`
 
-- [ ] Aceitar apenas caminho interno relativo da aplicação e fornecer fallback seguro.
+- [x] Aceitar apenas caminho interno relativo da aplicação e fornecer fallback seguro.
 - Referências: AC-001-12, risco de open redirect.
 - Dependências: T-001-002.
 - Resultado: URLs absolutas, esquemas, caminhos ambíguos e destinos não permitidos são rejeitados.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-012. O próximo incremento é T-001-013 — validar destinos internos de retorno sem permitir redirecionamento aberto.
+A implementação concluiu as tarefas T-001-001 a T-001-013. O próximo incremento é T-001-014 — implementar as operações mínimas do `UserRepository`.
