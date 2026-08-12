@@ -137,7 +137,7 @@
 
 ### T-001-014 — Implementar `UserRepository`
 
-- [ ] Criar operações mínimas de conta por ID/e-mail, verificação, hash e estado.
+- [x] Criar operações mínimas de conta por ID/e-mail, verificação, hash e estado.
 - Referências: BR-IDA-001/008/010, plano §4.
 - Dependências: T-001-009, T-001-010.
 - Resultado: aplicação não consulta tabela diretamente.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-013. O próximo incremento é T-001-014 — implementar as operações mínimas do `UserRepository`.
+A implementação concluiu as tarefas T-001-001 a T-001-014. O próximo incremento é T-001-015 — emitir, invalidar e consumir tokens por finalidade no `AuthTokenRepository`.
