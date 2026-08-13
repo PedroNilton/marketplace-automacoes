@@ -161,7 +161,7 @@
 
 ### T-001-017 — Implementar `RateLimitRepository` `P`
 
-- [ ] Atualizar janelas, contadores e bloqueios temporários por chave HMAC de ação/conta/origem.
+- [x] Atualizar janelas, contadores e bloqueios temporários por chave HMAC de ação/conta/origem.
 - Referências: BR-IDA-011/012, AC-001-07/10/14, plano §11.
 - Dependências: T-001-009, T-001-012.
 - Resultado: nenhuma senha é usada na chave e nenhum bloqueio permanente automático existe.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-016. O próximo incremento é T-001-017 — persistir janelas, contadores e bloqueios temporários no `RateLimitRepository`.
+A implementação concluiu as tarefas T-001-001 a T-001-017. O próximo incremento é T-001-018 — orquestrar o cadastro de conta.
