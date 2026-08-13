@@ -88,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o `UserRepository` pela tarefa `T-001-014`, mantendo a sequência aprovada da Spec 001.
+Implementar o `AuthTokenRepository` pela tarefa `T-001-015`, mantendo a sequência aprovada da Spec 001.
