@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ApplicationConfigModule } from '../../../config/application-config.module';
 import { PrismaModule } from '../../../infrastructure/database/prisma.module';
 import { AuthTokenRepository } from '../../application/ports/auth-token-repository';
 import { RateLimitKeyDigester } from '../../application/ports/rate-limit-key-digester';
@@ -12,7 +13,7 @@ import { PrismaUserRepository } from './prisma-user.repository';
 import { HmacRateLimitKeyDigester } from '../security/hmac-rate-limit-key-digester';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [ApplicationConfigModule, PrismaModule],
   providers: [
     PrismaUserRepository,
     PrismaAuthTokenRepository,

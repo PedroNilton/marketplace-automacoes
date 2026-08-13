@@ -26,7 +26,7 @@ export class PrismaRateLimitRepository
     super(context);
   }
 
-  registerAttempt(
+  async registerAttempt(
     input: RegisterRateLimitAttemptInput,
   ): Promise<RateLimitState> {
     this.assertPositiveInteger(
@@ -51,54 +51,54 @@ export class PrismaRateLimitRepository
         ) VALUES (
           ${input.action}::auth_rate_limit_action,
           ${input.keyDigest},
-          ${input.attemptedAt},
+          ${input.attemptedAt}::timestamptz,
           1,
           NULL,
-          ${input.attemptedAt}
+          ${input.attemptedAt}::timestamptz
         )
         ON CONFLICT (action, key_digest) DO UPDATE
         SET
           window_started_at = CASE
             WHEN auth_rate_limits.window_started_at
-              + make_interval(secs => ${input.windowDurationSeconds})
-              <= ${input.attemptedAt}
+              + make_interval(secs => ${input.windowDurationSeconds}::double precision)
+              <= ${input.attemptedAt}::timestamptz
               OR (
                 auth_rate_limits.blocked_until IS NOT NULL
-                AND auth_rate_limits.blocked_until <= ${input.attemptedAt}
+                AND auth_rate_limits.blocked_until <= ${input.attemptedAt}::timestamptz
               )
-            THEN ${input.attemptedAt}
+            THEN ${input.attemptedAt}::timestamptz
             ELSE auth_rate_limits.window_started_at
           END,
           attempt_count = CASE
-            WHEN auth_rate_limits.blocked_until > ${input.attemptedAt}
+            WHEN auth_rate_limits.blocked_until > ${input.attemptedAt}::timestamptz
             THEN auth_rate_limits.attempt_count
             WHEN auth_rate_limits.window_started_at
-              + make_interval(secs => ${input.windowDurationSeconds})
-              <= ${input.attemptedAt}
+              + make_interval(secs => ${input.windowDurationSeconds}::double precision)
+              <= ${input.attemptedAt}::timestamptz
               OR (
                 auth_rate_limits.blocked_until IS NOT NULL
-                AND auth_rate_limits.blocked_until <= ${input.attemptedAt}
+                AND auth_rate_limits.blocked_until <= ${input.attemptedAt}::timestamptz
               )
             THEN 1
             ELSE auth_rate_limits.attempt_count + 1
           END,
           blocked_until = CASE
-            WHEN auth_rate_limits.blocked_until > ${input.attemptedAt}
+            WHEN auth_rate_limits.blocked_until > ${input.attemptedAt}::timestamptz
             THEN auth_rate_limits.blocked_until
             WHEN auth_rate_limits.window_started_at
-              + make_interval(secs => ${input.windowDurationSeconds})
-              <= ${input.attemptedAt}
+              + make_interval(secs => ${input.windowDurationSeconds}::double precision)
+              <= ${input.attemptedAt}::timestamptz
               OR (
                 auth_rate_limits.blocked_until IS NOT NULL
-                AND auth_rate_limits.blocked_until <= ${input.attemptedAt}
+                AND auth_rate_limits.blocked_until <= ${input.attemptedAt}::timestamptz
               )
             THEN NULL
             WHEN auth_rate_limits.attempt_count + 1 > ${input.maximumAttempts}
-            THEN ${input.attemptedAt}
-              + make_interval(secs => ${input.blockDurationSeconds})
+            THEN ${input.attemptedAt}::timestamptz
+              + make_interval(secs => ${input.blockDurationSeconds}::double precision)
             ELSE NULL
           END,
-          updated_at = ${input.attemptedAt}
+          updated_at = ${input.attemptedAt}::timestamptz
         RETURNING
           action,
           key_digest AS "keyDigest",
