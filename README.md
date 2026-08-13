@@ -88,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o `SessionRepository` pela tarefa `T-001-016`, mantendo a sequência aprovada da Spec 001.
+Implementar o `RateLimitRepository` pela tarefa `T-001-017`, mantendo a sequência aprovada da Spec 001.

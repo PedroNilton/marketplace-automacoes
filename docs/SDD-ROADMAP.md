@@ -1,6 +1,6 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.4.0
+- **Versão:** 1.5.0
 - **Status:** Ativo
 - **Data:** 12 de agosto de 2026
 - **Método:** Spec-Driven Development
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-015 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas e autorizações temporárias.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-016 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias e sessões.
 
-O próximo incremento executável é `T-001-016` — implementação do `SessionRepository`. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-017` — implementação do `RateLimitRepository`. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-016` na Spec 001: criar, resolver, tocar com intervalo, expirar e revogar uma ou todas as sessões. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-017` na Spec 001: atualizar atomicamente janelas, contadores e bloqueios temporários por chave HMAC. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
