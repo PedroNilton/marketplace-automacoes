@@ -614,4 +614,4 @@ A decomposição exata será registrada em `tasks.md`; esta lista não autoriza 
 
 ## 25. Próxima etapa
 
-O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-014 estão concluídas; a próxima etapa é T-001-015 — implementação do `AuthTokenRepository`.
+O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-015 estão concluídas; a próxima etapa é T-001-016 — implementação do `SessionRepository`.

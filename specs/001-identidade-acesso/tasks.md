@@ -145,7 +145,7 @@
 
 ### T-001-015 — Implementar `AuthTokenRepository` `P`
 
-- [ ] Emitir, invalidar e consumir tokens por finalidade com condição atômica.
+- [x] Emitir, invalidar e consumir tokens por finalidade com condição atômica.
 - Referências: AC-001-05/06/15/16, plano §§9.3 e 10.
 - Dependências: T-001-009, T-001-012.
 - Resultado: nova emissão invalida pendentes e somente uma confirmação concorrente vence.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-014. O próximo incremento é T-001-015 — emitir, invalidar e consumir tokens por finalidade no `AuthTokenRepository`.
+A implementação concluiu as tarefas T-001-001 a T-001-015. O próximo incremento é T-001-016 — criar, resolver, expirar e revogar sessões no `SessionRepository`.

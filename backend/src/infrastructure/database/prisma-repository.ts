@@ -4,7 +4,7 @@ import {
 } from './prisma-execution-context';
 
 export abstract class PrismaRepository {
-  protected constructor(private readonly context: PrismaExecutionContext) {}
+  protected constructor(protected readonly context: PrismaExecutionContext) {}
 
   protected execute<T>(
     operation: (client: PrismaDatabaseClient) => Promise<T>,
