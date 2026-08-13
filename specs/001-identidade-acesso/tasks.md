@@ -153,7 +153,7 @@
 
 ### T-001-016 — Implementar `SessionRepository` `P`
 
-- [ ] Criar, resolver, tocar com intervalo, expirar e revogar uma ou todas as sessões.
+- [x] Criar, resolver, tocar com intervalo, expirar e revogar uma ou todas as sessões.
 - Referências: AC-001-08/09/11/13/15, ADR-002.
 - Dependências: T-001-009, T-001-012.
 - Resultado: banco recebe somente digests; estado da conta é revalidado.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-015. O próximo incremento é T-001-016 — criar, resolver, expirar e revogar sessões no `SessionRepository`.
+A implementação concluiu as tarefas T-001-001 a T-001-016. O próximo incremento é T-001-017 — persistir janelas, contadores e bloqueios temporários no `RateLimitRepository`.
