@@ -88,4 +88,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o cadastro pela tarefa `T-001-018`, orquestrando os componentes aprovados na Spec 001.
+Implementar a confirmação de e-mail pela tarefa `T-001-019`, consumindo o token de forma atômica e idempotente.

@@ -1,8 +1,8 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.6.0
+- **Versão:** 1.7.0
 - **Status:** Ativo
-- **Data:** 13 de agosto de 2026
+- **Data:** 14 de agosto de 2026
 - **Método:** Spec-Driven Development
 
 ## 1. Objetivo
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-017 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões e limites de autenticação.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-018 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação e cadastro.
 
-O próximo incremento executável é `T-001-018` — implementação do cadastro. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-019` — implementação da confirmação de e-mail. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-018` na Spec 001: orquestrar validação, limite, unicidade, hash, consentimentos, criação de conta e emissão do token de verificação. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-019` na Spec 001: consumir um token válido, marcar o e-mail como verificado e invalidar autorizações pendentes de forma atômica. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
