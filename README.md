@@ -1,5 +1,7 @@
 # Marketplace de Automações
 
+[![CI](https://github.com/PedroNilton/marketplace-automacoes/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/PedroNilton/marketplace-automacoes/actions/workflows/ci.yml)
+
 Marketplace brasileiro para conectar compradores que desejam automatizar processos a vendedores especializados em automações, integrações e soluções low-code, no-code ou desenvolvidas sob medida.
 
 ## Estado do projeto
