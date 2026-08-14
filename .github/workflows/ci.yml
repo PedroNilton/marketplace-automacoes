@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:17.10-alpine3.23
+        env:
+          POSTGRES_DB: marketplace_automacoes
+          POSTGRES_USER: marketplace
+          POSTGRES_PASSWORD: marketplace_local
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U marketplace -d marketplace_automacoes"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: postgresql://marketplace:marketplace_local@127.0.0.1:5433/marketplace_automacoes
+      AUTH_HMAC_SECRET: test-only-hmac-secret-with-at-least-32-characters
+      API_ORIGIN: http://127.0.0.1:3001
+      FRONTEND_ORIGIN: http://127.0.0.1:3000
+      SMTP_HOST: 127.0.0.1
+      SMTP_PORT: "1025"
+      SMTP_SECURE: "false"
+      SMTP_FROM: nao-responder@marketplace.local
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply database migrations
+        run: npm run prisma:migrate:deploy
+
+      - name: Run quality checks
+        run: npm run quality
