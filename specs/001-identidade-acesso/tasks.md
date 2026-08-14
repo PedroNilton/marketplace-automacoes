@@ -171,7 +171,7 @@
 
 ### T-001-018 — Implementar cadastro
 
-- [ ] Orquestrar validação, limite, unicidade, hash, consentimentos, conta e token de verificação.
+- [x] Orquestrar validação, limite, unicidade, hash, consentimentos, conta e token de verificação.
 - Referências: RF-IDA-001, AC-001-01/02/03/04.
 - Dependências: T-001-011, T-001-014, T-001-015, T-001-017.
 - Resultado: conta e token são transacionais; duplicidade produz resposta neutra.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-017. O próximo incremento é T-001-018 — orquestrar o cadastro de conta.
+A implementação concluiu as tarefas T-001-001 a T-001-018. O próximo incremento é T-001-019 — confirmar o e-mail por token.
