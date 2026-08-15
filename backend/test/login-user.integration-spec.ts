@@ -9,6 +9,7 @@ import {
   LoginUserOptions,
 } from '../src/identity/application/login-user';
 import { Clock } from '../src/identity/application/ports/clock';
+import { CsrfTokenDeriver } from '../src/identity/application/ports/csrf-token-deriver';
 import { RateLimitKeyDigester } from '../src/identity/application/ports/rate-limit-key-digester';
 import { RateLimitRepository } from '../src/identity/application/ports/rate-limit-repository';
 import { SecureTokenGenerator } from '../src/identity/application/ports/secure-token-generator';
@@ -51,6 +52,7 @@ describe('LoginUser integration', () => {
   let rateLimitKeyDigester: RateLimitKeyDigester;
   let passwordHasher: Argon2idPasswordHasher;
   let tokenDigester: Sha256TokenDigester;
+  let csrfTokens: CsrfTokenDeriver;
   let secureTokens: SequentialTokenGenerator;
   let clock: MutableClock;
   let dependencies: LoginUserDependencies;
@@ -72,6 +74,7 @@ describe('LoginUser integration', () => {
       parallelism: 1,
     });
     tokenDigester = new Sha256TokenDigester();
+    csrfTokens = testingModule.get(CsrfTokenDeriver);
     secureTokens = new SequentialTokenGenerator();
     clock = new MutableClock(now);
     options = {
@@ -92,6 +95,7 @@ describe('LoginUser integration', () => {
       transactions: testingModule.get(TransactionManager),
       passwordHasher,
       secureTokens,
+      csrfTokens,
       tokenDigester,
       rateLimits: testingModule.get(RateLimitRepository),
       rateLimitKeyDigester,
@@ -133,7 +137,7 @@ describe('LoginUser integration', () => {
       },
       session: {
         token: 'login-token-1',
-        csrfToken: 'login-token-2',
+        csrfToken: csrfTokens.derive('login-token-1'),
         restricted: false,
         returnTo: '/ofertas/42/solicitar',
         idleExpiresAt: new Date('2026-08-16T21:00:00.000Z'),
@@ -143,7 +147,7 @@ describe('LoginUser integration', () => {
     expect(stored).toMatchObject({
       userId,
       tokenDigest: tokenDigester.digest('login-token-1'),
-      csrfDigest: tokenDigester.digest('login-token-2'),
+      csrfDigest: tokenDigester.digest(csrfTokens.derive('login-token-1')),
       createdAt: now,
       lastSeenAt: now,
       idleExpiresAt: new Date('2026-08-16T21:00:00.000Z'),
