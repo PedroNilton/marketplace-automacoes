@@ -152,34 +152,28 @@ export class ResendEmailVerification {
       ['ACCOUNT', email.value],
       ['ORIGIN', origin],
     ];
-    const states = await Promise.all(
-      identifiers.map(([scope, identifier]) =>
-        this.dependencies.rateLimits.registerAttempt({
-          action: 'EMAIL_RESEND',
-          keyDigest: this.dependencies.rateLimitKeyDigester.digest(
-            'EMAIL_RESEND',
-            scope,
-            `${namespace}:${identifier}`,
-          ),
-          attemptedAt,
-          windowDurationSeconds,
-          maximumAttempts,
-          blockDurationSeconds,
-        }),
-      ),
-    );
+    for (const [scope, identifier] of identifiers) {
+      const state = await this.dependencies.rateLimits.registerAttempt({
+        action: 'EMAIL_RESEND',
+        keyDigest: this.dependencies.rateLimitKeyDigester.digest(
+          'EMAIL_RESEND',
+          scope,
+          `${namespace}:${identifier}`,
+        ),
+        attemptedAt,
+        windowDurationSeconds,
+        maximumAttempts,
+        blockDurationSeconds,
+      });
 
-    this.throwIfLimited(states);
+      this.throwIfLimited(state);
+    }
   }
 
-  private throwIfLimited(states: readonly RateLimitState[]): void {
-    const retryAfterSeconds = Math.max(
-      ...states.map(
-        (state) =>
-          this.dependencies.rateLimitDecisions.evaluate(state)
-            .retryAfterSeconds ?? 0,
-      ),
-    );
+  private throwIfLimited(state: RateLimitState): void {
+    const retryAfterSeconds =
+      this.dependencies.rateLimitDecisions.evaluate(state).retryAfterSeconds ??
+      0;
 
     if (retryAfterSeconds > 0) {
       throw new EmailVerificationResendRateLimitExceededError(
