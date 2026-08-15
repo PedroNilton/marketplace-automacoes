@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ApplicationConfigModule } from '../../../config/application-config.module';
 import { PrismaModule } from '../../../infrastructure/database/prisma.module';
 import { AuthTokenRepository } from '../../application/ports/auth-token-repository';
+import { CsrfTokenDeriver } from '../../application/ports/csrf-token-deriver';
 import { RateLimitKeyDigester } from '../../application/ports/rate-limit-key-digester';
 import { RateLimitRepository } from '../../application/ports/rate-limit-repository';
 import { SessionRepository } from '../../application/ports/session-repository';
@@ -11,6 +12,7 @@ import { PrismaRateLimitRepository } from './prisma-rate-limit.repository';
 import { PrismaSessionRepository } from './prisma-session.repository';
 import { PrismaUserRepository } from './prisma-user.repository';
 import { HmacRateLimitKeyDigester } from '../security/hmac-rate-limit-key-digester';
+import { HmacCsrfTokenDeriver } from '../security/hmac-csrf-token-deriver';
 
 @Module({
   imports: [ApplicationConfigModule, PrismaModule],
@@ -20,6 +22,7 @@ import { HmacRateLimitKeyDigester } from '../security/hmac-rate-limit-key-digest
     PrismaSessionRepository,
     PrismaRateLimitRepository,
     HmacRateLimitKeyDigester,
+    HmacCsrfTokenDeriver,
     {
       provide: UserRepository,
       useExisting: PrismaUserRepository,
@@ -37,6 +40,10 @@ import { HmacRateLimitKeyDigester } from '../security/hmac-rate-limit-key-digest
       useExisting: HmacRateLimitKeyDigester,
     },
     {
+      provide: CsrfTokenDeriver,
+      useExisting: HmacCsrfTokenDeriver,
+    },
+    {
       provide: RateLimitRepository,
       useExisting: PrismaRateLimitRepository,
     },
@@ -45,6 +52,7 @@ import { HmacRateLimitKeyDigester } from '../security/hmac-rate-limit-key-digest
     UserRepository,
     AuthTokenRepository,
     SessionRepository,
+    CsrfTokenDeriver,
     RateLimitKeyDigester,
     RateLimitRepository,
   ],
