@@ -614,4 +614,4 @@ A decomposição exata será registrada em `tasks.md`; esta lista não autoriza 
 
 ## 25. Próxima etapa
 
-O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-018 estão concluídas; a próxima etapa é T-001-019 — implementação da confirmação de e-mail.
+O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-019 estão concluídas; a próxima etapa é T-001-020 — implementação do reenvio de verificação.

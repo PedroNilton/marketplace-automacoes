@@ -179,7 +179,7 @@
 
 ### T-001-019 — Implementar confirmação de e-mail `P`
 
-- [ ] Consumir token válido, marcar verificação e invalidar pendentes de forma atômica.
+- [x] Consumir token válido, marcar verificação e invalidar pendentes de forma atômica.
 - Referências: RF-IDA-002, AC-001-05/06.
 - Dependências: T-001-014, T-001-015.
 - Resultado: repetição segura não altera novamente o estado.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-018. O próximo incremento é T-001-019 — confirmar o e-mail por token.
+A implementação concluiu as tarefas T-001-001 a T-001-019. O próximo incremento é T-001-020 — reenviar a verificação de forma neutra e controlada.
