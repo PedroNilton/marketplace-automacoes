@@ -1,6 +1,6 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.10.0
+- **Versão:** 1.11.0
 - **Status:** Ativo
 - **Data:** 15 de agosto de 2026
 - **Método:** Spec-Driven Development
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-021 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado e login.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-022 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado, login e resolução da identidade atual.
 
-O próximo incremento executável é `T-001-022` — resolução da identidade da sessão atual. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-023` — logout idempotente da sessão atual. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-022` na Spec 001: resolver o digest do cookie, revalidar sessão, expirações e conta, controlar atividade e devolver a identidade mínima com CSRF. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-023` na Spec 001: derivar o digest do cookie e revogar a sessão atual de forma idempotente, sem reativar ou revelar estado sensível. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.

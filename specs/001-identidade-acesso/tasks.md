@@ -203,7 +203,7 @@
 
 ### T-001-022 — Implementar resolução da identidade atual
 
-- [ ] Resolver cookie, sessão, expirações, conta e token CSRF e retornar visão mínima.
+- [x] Resolver cookie, sessão, expirações, conta e token CSRF e retornar visão mínima.
 - Referências: RF-IDA-007, BR-IDA-004/005/013, AC-001-17.
 - Dependências: T-001-014, T-001-016.
 - Resultado: identidade distingue comum, restrita e administrativa sem expor credencial.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-021. O próximo incremento é T-001-022 — resolver a identidade atual a partir de uma sessão válida.
+A implementação concluiu as tarefas T-001-001 a T-001-022. O próximo incremento é T-001-023 — revogar a sessão atual de forma idempotente no logout.
