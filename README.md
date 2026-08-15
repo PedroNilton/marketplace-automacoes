@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-019 |
-| **Próximo passo** | T-001-020 — Reenvio de verificação |
+| **Concluído** | Tarefas T-001-001 a T-001-020 |
+| **Próximo passo** | T-001-021 — Login |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -42,7 +42,7 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Schema de identidade e migrations versionadas com Prisma
 - Políticas de e-mail e senha, incluindo hash Argon2id
 - Tokens seguros, sessões e limitação de tentativas
-- Casos de uso transacionais de cadastro e confirmação de e-mail
+- Casos de uso transacionais de cadastro, confirmação e reenvio controlado de verificação
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
@@ -217,4 +217,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o reenvio de verificação pela tarefa `T-001-020`, mantendo resposta neutra, intervalo e limites de emissão.
+Implementar o login pela tarefa `T-001-021`, com limite de tentativas, verificação de credenciais e criação da sessão apropriada.

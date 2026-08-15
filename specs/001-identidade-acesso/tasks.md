@@ -187,7 +187,7 @@
 
 ### T-001-020 — Implementar reenvio de verificação `P`
 
-- [ ] Responder de forma neutra, aplicar intervalo/janela e emitir somente para conta elegível.
+- [x] Responder de forma neutra, aplicar intervalo/janela e emitir somente para conta elegível.
 - Referências: AC-001-06/07, SPEC-001 fluxo 9.4.
 - Dependências: T-001-014, T-001-015, T-001-017.
 - Resultado: novo token invalida anterior e abuso não revela conta.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-019. O próximo incremento é T-001-020 — reenviar a verificação de forma neutra e controlada.
+A implementação concluiu as tarefas T-001-001 a T-001-020. O próximo incremento é T-001-021 — autenticar credenciais e criar uma sessão adequada ao estado da conta.
