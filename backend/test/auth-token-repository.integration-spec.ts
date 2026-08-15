@@ -116,6 +116,35 @@ describe('PrismaAuthTokenRepository', () => {
     ).resolves.toMatchObject({ invalidatedAt: null });
   });
 
+  it('finds the most recent emission only for the requested purpose', async () => {
+    const previousDigest = tokenDigest('9');
+    const resetDigest = tokenDigest('a');
+    const latestDigest = tokenDigest('b');
+    await issue(primaryUserId, 'EMAIL_VERIFICATION', previousDigest);
+    await issue(
+      primaryUserId,
+      'PASSWORD_RESET',
+      resetDigest,
+      new Date('2026-08-13T10:05:00.000Z'),
+    );
+    await issue(
+      primaryUserId,
+      'EMAIL_VERIFICATION',
+      latestDigest,
+      new Date('2026-08-13T10:10:00.000Z'),
+    );
+
+    await expect(
+      tokens.findLatest(primaryUserId, 'EMAIL_VERIFICATION'),
+    ).resolves.toMatchObject({ tokenDigest: latestDigest });
+    await expect(
+      tokens.findLatest(primaryUserId, 'PASSWORD_RESET'),
+    ).resolves.toMatchObject({ tokenDigest: resetDigest });
+    await expect(
+      tokens.findLatest(secondaryUserId, 'EMAIL_VERIFICATION'),
+    ).resolves.toBeNull();
+  });
+
   it('invalidates all pending tokens for one account and purpose', async () => {
     const digest = tokenDigest('1');
     const invalidatedAt = new Date('2026-08-13T10:20:00.000Z');
