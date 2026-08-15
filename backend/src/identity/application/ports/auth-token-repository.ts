@@ -17,6 +17,11 @@ export interface ConsumeAuthTokenInput {
 export abstract class AuthTokenRepository {
   abstract issue(input: IssueAuthTokenInput): Promise<AuthToken>;
 
+  abstract findLatest(
+    userId: string,
+    purpose: AuthTokenPurpose,
+  ): Promise<AuthToken | null>;
+
   abstract consume(input: ConsumeAuthTokenInput): Promise<AuthToken | null>;
 
   abstract invalidatePending(
