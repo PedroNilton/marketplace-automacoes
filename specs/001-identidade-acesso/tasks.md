@@ -195,7 +195,7 @@
 
 ### T-001-021 — Implementar login
 
-- [ ] Verificar limite, conta, Argon2id, retorno e criar sessão comum ou restrita.
+- [x] Verificar limite, conta, Argon2id, retorno e criar sessão comum ou restrita.
 - Referências: RF-IDA-003/006, AC-001-08 a AC-001-12.
 - Dependências: T-001-011, T-001-013, T-001-014, T-001-016, T-001-017.
 - Resultado: mensagem genérica para credencial inválida e sessão somente após persistência.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-020. O próximo incremento é T-001-021 — autenticar credenciais e criar uma sessão adequada ao estado da conta.
+A implementação concluiu as tarefas T-001-001 a T-001-021. O próximo incremento é T-001-022 — resolver a identidade atual a partir de uma sessão válida.
