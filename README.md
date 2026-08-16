@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-022 |
-| **Próximo passo** | T-001-023 — Logout |
+| **Concluído** | Tarefas T-001-001 a T-001-023 |
+| **Próximo passo** | T-001-024 — Solicitação de redefinição de senha |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -42,7 +42,7 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Schema de identidade e migrations versionadas com Prisma
 - Políticas de e-mail e senha, incluindo hash Argon2id
 - Tokens seguros, sessões e limitação de tentativas
-- Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login e resolução segura da identidade atual
+- Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login, identidade atual e logout idempotente
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
@@ -217,4 +217,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o logout pela tarefa `T-001-023`, revogando a sessão atual de forma idempotente.
+Implementar a solicitação de redefinição de senha pela tarefa `T-001-024`, com resposta neutra, limites e emissão apenas para conta elegível.
