@@ -58,6 +58,7 @@ export class PrismaSessionRepository
           user: {
             select: {
               id: true,
+              displayName: true,
               emailVerifiedAt: true,
               platformRole: true,
             },
@@ -73,6 +74,7 @@ export class PrismaSessionRepository
         session: PrismaSessionMapper.toDomain(session),
         identity: {
           userId: session.user.id,
+          displayName: session.user.displayName,
           emailVerifiedAt: session.user.emailVerifiedAt,
           platformRole: session.user.platformRole,
         },

@@ -24,6 +24,7 @@ export interface Session {
 
 export interface SessionIdentity {
   readonly userId: string;
+  readonly displayName: string;
   readonly emailVerifiedAt: Date | null;
   readonly platformRole: PlatformRole;
 }

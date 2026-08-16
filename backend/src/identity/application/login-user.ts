@@ -6,6 +6,7 @@ import { AccountUnavailableError } from './errors/account-unavailable.error';
 import { InvalidLoginCredentialsError } from './errors/invalid-login-credentials.error';
 import { LoginRateLimitExceededError } from './errors/login-rate-limit-exceeded.error';
 import { Clock } from './ports/clock';
+import { CsrfTokenDeriver } from './ports/csrf-token-deriver';
 import { PasswordHasher } from './ports/password-hasher';
 import { RateLimitKeyDigester } from './ports/rate-limit-key-digester';
 import { RateLimitRepository } from './ports/rate-limit-repository';
@@ -58,6 +59,7 @@ export interface LoginUserDependencies {
   readonly transactions: TransactionManager;
   readonly passwordHasher: PasswordHasher;
   readonly secureTokens: SecureTokenGenerator;
+  readonly csrfTokens: CsrfTokenDeriver;
   readonly tokenDigester: TokenDigester;
   readonly rateLimits: RateLimitRepository;
   readonly rateLimitKeyDigester: RateLimitKeyDigester;
@@ -102,7 +104,7 @@ export class LoginUser {
     }
 
     const token = this.dependencies.secureTokens.generate();
-    const csrfToken = this.dependencies.secureTokens.generate();
+    const csrfToken = this.dependencies.csrfTokens.derive(token);
     const absoluteExpiresAt = addSeconds(
       attemptedAt,
       this.options.sessionAbsoluteTtlSeconds,

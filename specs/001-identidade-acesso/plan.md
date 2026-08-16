@@ -614,4 +614,4 @@ A decomposição exata será registrada em `tasks.md`; esta lista não autoriza 
 
 ## 25. Próxima etapa
 
-O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-021 estão concluídas; a próxima etapa é T-001-022 — resolução da identidade atual e da validade da sessão.
+O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-022 estão concluídas; a próxima etapa é T-001-023 — revogação idempotente da sessão atual no logout.

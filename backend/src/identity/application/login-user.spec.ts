@@ -13,6 +13,7 @@ import {
   LoginUserOptions,
 } from './login-user';
 import { Clock } from './ports/clock';
+import { CsrfTokenDeriver } from './ports/csrf-token-deriver';
 import { PasswordHasher } from './ports/password-hasher';
 import { RateLimitKeyDigester } from './ports/rate-limit-key-digester';
 import { RateLimitRepository } from './ports/rate-limit-repository';
@@ -40,6 +41,7 @@ describe('LoginUser', () => {
   let transactions: jest.Mocked<TransactionManager>;
   let passwordHasher: jest.Mocked<PasswordHasher>;
   let secureTokens: jest.Mocked<SecureTokenGenerator>;
+  let csrfTokens: jest.Mocked<CsrfTokenDeriver>;
   let tokenDigester: jest.Mocked<TokenDigester>;
   let rateLimits: jest.Mocked<RateLimitRepository>;
   let rateLimitKeyDigester: jest.Mocked<RateLimitKeyDigester>;
@@ -52,6 +54,7 @@ describe('LoginUser', () => {
     transactions = portMock<TransactionManager>();
     passwordHasher = portMock<PasswordHasher>();
     secureTokens = portMock<SecureTokenGenerator>();
+    csrfTokens = portMock<CsrfTokenDeriver>();
     tokenDigester = portMock<TokenDigester>();
     rateLimits = portMock<RateLimitRepository>();
     rateLimitKeyDigester = portMock<RateLimitKeyDigester>();
@@ -60,9 +63,8 @@ describe('LoginUser', () => {
     users.findByEmail.mockResolvedValue(userAccount());
     transactions.run.mockImplementation((operation) => operation());
     passwordHasher.verify.mockResolvedValue(true);
-    secureTokens.generate
-      .mockReturnValueOnce('raw-session-token')
-      .mockReturnValueOnce('raw-csrf-token');
+    secureTokens.generate.mockReturnValue('raw-session-token');
+    csrfTokens.derive.mockReturnValue('raw-csrf-token');
     tokenDigester.digest.mockImplementation((value) => `digest:${value}`);
     rateLimitKeyDigester.digest.mockImplementation(
       (action, scope, identifier) => `${action}:${scope}:${identifier}`,
@@ -79,6 +81,7 @@ describe('LoginUser', () => {
       transactions,
       passwordHasher,
       secureTokens,
+      csrfTokens,
       tokenDigester,
       rateLimits,
       rateLimitKeyDigester,
@@ -387,6 +390,7 @@ function portMock<T>(): jest.Mocked<T> {
     hash: jest.fn(),
     verify: jest.fn(),
     generate: jest.fn(),
+    derive: jest.fn(),
     digest: jest.fn(),
     matches: jest.fn(),
     registerAttempt: jest.fn(),
