@@ -4,8 +4,7 @@ import { Clock } from './ports/clock';
 import { CsrfTokenDeriver } from './ports/csrf-token-deriver';
 import { SessionRepository } from './ports/session-repository';
 import { TokenDigester } from './ports/token-digester';
-
-const SESSION_TOKEN_PATTERN = /^[A-Za-z\d_-]{43}$/;
+import { parseSessionToken } from './session-token';
 
 export interface GetCurrentIdentityInput {
   readonly sessionToken: string | null | undefined;
@@ -47,7 +46,11 @@ export class GetCurrentIdentity {
   async execute(
     input: GetCurrentIdentityInput,
   ): Promise<GetCurrentIdentityResult> {
-    const sessionToken = requireSessionToken(input.sessionToken);
+    const sessionToken = parseSessionToken(input.sessionToken);
+
+    if (!sessionToken) {
+      throw new AuthenticationRequiredError();
+    }
     const resolvedAt = this.dependencies.clock.now();
     const tokenDigest = this.dependencies.tokenDigester.digest(sessionToken);
     let resolved = await this.dependencies.sessions.resolve(
@@ -122,14 +125,6 @@ export class GetCurrentIdentity {
       throw new AuthenticationRequiredError();
     }
   }
-}
-
-function requireSessionToken(value: string | null | undefined): string {
-  if (!value || !SESSION_TOKEN_PATTERN.test(value)) {
-    throw new AuthenticationRequiredError();
-  }
-
-  return value;
 }
 
 function assertOptions(options: GetCurrentIdentityOptions): void {
