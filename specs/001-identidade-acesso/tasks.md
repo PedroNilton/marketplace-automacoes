@@ -219,7 +219,7 @@
 
 ### T-001-024 — Implementar solicitação de redefinição `P`
 
-- [ ] Aplicar resposta neutra, limites e emissão para conta elegível.
+- [x] Aplicar resposta neutra, limites e emissão para conta elegível.
 - Referências: RF-IDA-004, AC-001-14.
 - Dependências: T-001-014, T-001-015, T-001-017.
 - Resultado: solicitação não altera ou bloqueia a conta.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-023. O próximo incremento é T-001-024 — solicitar redefinição de senha com resposta neutra e emissão controlada.
+A implementação concluiu as tarefas T-001-001 a T-001-024. O próximo incremento é T-001-025 — confirmar a redefinição de senha de forma transacional, consumindo a autorização e revogando todas as sessões.
