@@ -614,4 +614,4 @@ A decomposição exata será registrada em `tasks.md`; esta lista não autoriza 
 
 ## 25. Próxima etapa
 
-O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-023 estão concluídas; a próxima etapa é T-001-024 — solicitação neutra e limitada de redefinição de senha.
+O plano foi decomposto e está em implementação incremental. As tarefas T-001-001 a T-001-024 estão concluídas; a próxima etapa é T-001-025 — confirmação transacional da redefinição de senha.
