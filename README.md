@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-024 |
-| **Próximo passo** | T-001-025 — Confirmação da redefinição de senha |
+| **Concluído** | Tarefas T-001-001 a T-001-025 |
+| **Próximo passo** | T-001-026 — Problem Details global |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -42,7 +42,7 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Schema de identidade e migrations versionadas com Prisma
 - Políticas de e-mail e senha, incluindo hash Argon2id
 - Tokens seguros, sessões e limitação de tentativas
-- Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login, identidade atual, logout idempotente e solicitação de redefinição de senha
+- Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login, identidade atual, logout idempotente e recuperação completa de senha
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
@@ -217,4 +217,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar a confirmação da redefinição de senha pela tarefa `T-001-025`, validando política e token para atualizar o hash, consumir a autorização e revogar todas as sessões em uma única transação.
+Implementar o tratamento global de erros pela tarefa `T-001-026`, mapeando validação, autenticação, conflito, mídia, limite e falha interna para Problem Details conforme RFC 9457.
