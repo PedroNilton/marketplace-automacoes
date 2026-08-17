@@ -237,7 +237,7 @@
 
 ### T-001-026 — Implementar Problem Details global
 
-- [ ] Mapear validação, autenticação, conflito, mídia, limite e falha interna para RFC 9457.
+- [x] Mapear validação, autenticação, conflito, mídia, limite e falha interna para RFC 9457.
 - Referências: RNF-API-001/002, plano §8.
 - Dependências: T-001-002.
 - Resultado: `traceId` opaco e mensagens sem detalhes internos.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-025. O próximo incremento é T-001-026 — implementar Problem Details global com contratos seguros e rastreáveis.
+A implementação concluiu as tarefas T-001-001 a T-001-026. O próximo incremento é T-001-027 — implementar controllers e DTOs dos contratos REST de identidade.

@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-025 |
-| **Próximo passo** | T-001-026 — Problem Details global |
+| **Concluído** | Tarefas T-001-001 a T-001-026 |
+| **Próximo passo** | T-001-027 — Controllers e DTOs de identidade |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -43,6 +43,7 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Políticas de e-mail e senha, incluindo hash Argon2id
 - Tokens seguros, sessões e limitação de tentativas
 - Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login, identidade atual, logout idempotente e recuperação completa de senha
+- Erros HTTP padronizados com Problem Details, códigos públicos estáveis e identificadores opacos
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
@@ -217,4 +218,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o tratamento global de erros pela tarefa `T-001-026`, mapeando validação, autenticação, conflito, mídia, limite e falha interna para Problem Details conforme RFC 9457.
+Implementar os controllers e DTOs de identidade pela tarefa `T-001-027`, expondo os oito contratos REST sem mover regras de negócio ou acesso ao Prisma para a camada HTTP.
