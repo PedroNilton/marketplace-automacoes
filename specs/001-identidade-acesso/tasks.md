@@ -211,7 +211,7 @@
 
 ### T-001-023 — Implementar logout `P`
 
-- [ ] Revogar sessão atual de forma idempotente.
+- [x] Revogar sessão atual de forma idempotente.
 - Referências: RF-IDA-003, AC-001-13.
 - Dependências: T-001-016.
 - Resultado: repetir saída não reativa nem produz falha prejudicial.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-022. O próximo incremento é T-001-023 — revogar a sessão atual de forma idempotente no logout.
+A implementação concluiu as tarefas T-001-001 a T-001-023. O próximo incremento é T-001-024 — solicitar redefinição de senha com resposta neutra e emissão controlada.

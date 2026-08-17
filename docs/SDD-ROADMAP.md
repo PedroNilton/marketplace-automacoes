@@ -1,6 +1,6 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.11.0
+- **Versão:** 1.12.0
 - **Status:** Ativo
 - **Data:** 15 de agosto de 2026
 - **Método:** Spec-Driven Development
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-022 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado, login e resolução da identidade atual.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-023 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado, login, resolução da identidade atual e logout idempotente.
 
-O próximo incremento executável é `T-001-023` — logout idempotente da sessão atual. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-024` — solicitação neutra de redefinição de senha. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-023` na Spec 001: derivar o digest do cookie e revogar a sessão atual de forma idempotente, sem reativar ou revelar estado sensível. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-024` na Spec 001: aplicar resposta neutra e limites por conta/origem, emitindo token de redefinição somente para conta elegível sem alterar seu estado. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
