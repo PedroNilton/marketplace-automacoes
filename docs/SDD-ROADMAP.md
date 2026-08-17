@@ -1,6 +1,6 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.13.0
+- **Versão:** 1.14.0
 - **Status:** Ativo
 - **Data:** 16 de agosto de 2026
 - **Método:** Spec-Driven Development
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-024 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado, login, resolução da identidade atual, logout idempotente e solicitação neutra de redefinição de senha.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-025 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado, login, resolução da identidade atual, logout idempotente e recuperação completa de senha.
 
-O próximo incremento executável é `T-001-025` — confirmação transacional da redefinição de senha. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-026` — tratamento global de erros com Problem Details. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-025` na Spec 001: validar política e token e, em uma única transação, atualizar o hash da senha, consumir a autorização e revogar todas as sessões, sem login automático ou reativação da conta. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-026` na Spec 001: mapear validação, autenticação, conflito, mídia, limite e falha interna para Problem Details conforme RFC 9457, com `traceId` opaco e sem detalhes internos. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.

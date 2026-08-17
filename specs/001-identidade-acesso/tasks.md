@@ -227,7 +227,7 @@
 
 ### T-001-025 — Implementar confirmação de redefinição
 
-- [ ] Validar política e token e, em transação, atualizar hash, consumir token e revogar todas as sessões.
+- [x] Validar política e token e, em transação, atualizar hash, consumir token e revogar todas as sessões.
 - Referências: RF-IDA-004, AC-001-03/04/15/16.
 - Dependências: T-001-011, T-001-014, T-001-015, T-001-016.
 - Resultado: sem login automático; conta suspensa permanece suspensa.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-024. O próximo incremento é T-001-025 — confirmar a redefinição de senha de forma transacional, consumindo a autorização e revogando todas as sessões.
+A implementação concluiu as tarefas T-001-001 a T-001-025. O próximo incremento é T-001-026 — implementar Problem Details global com contratos seguros e rastreáveis.

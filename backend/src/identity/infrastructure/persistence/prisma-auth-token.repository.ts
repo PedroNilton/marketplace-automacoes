@@ -56,6 +56,22 @@ export class PrismaAuthTokenRepository
     });
   }
 
+  findConsumable(input: ConsumeAuthTokenInput): Promise<AuthToken | null> {
+    return this.execute(async (client) => {
+      const token = await client.authToken.findFirst({
+        where: {
+          purpose: input.purpose,
+          tokenDigest: input.tokenDigest,
+          consumedAt: null,
+          invalidatedAt: null,
+          expiresAt: { gt: input.consumedAt },
+        },
+      });
+
+      return token ? PrismaAuthTokenMapper.toDomain(token) : null;
+    });
+  }
+
   consume(input: ConsumeAuthTokenInput): Promise<AuthToken | null> {
     return this.execute(async (client) => {
       const result = await client.authToken.updateMany({
