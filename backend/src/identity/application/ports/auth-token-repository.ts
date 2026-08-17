@@ -22,6 +22,10 @@ export abstract class AuthTokenRepository {
     purpose: AuthTokenPurpose,
   ): Promise<AuthToken | null>;
 
+  abstract findConsumable(
+    input: ConsumeAuthTokenInput,
+  ): Promise<AuthToken | null>;
+
   abstract consume(input: ConsumeAuthTokenInput): Promise<AuthToken | null>;
 
   abstract invalidatePending(
