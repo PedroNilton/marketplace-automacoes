@@ -173,6 +173,19 @@ describe('IdentityController HTTP contracts', () => {
       .expect(200)
       .expect('Content-Type', /json/);
 
+    expect(response.headers['cache-control']).toBe('no-store');
+    expect(response.headers['set-cookie']).toEqual([
+      expect.stringContaining(
+        'marketplace_session=raw-session-token-must-not-leak',
+      ),
+    ]);
+    const cookie = response.headers['set-cookie']?.[0] ?? '';
+    expect(cookie).toContain('Path=/');
+    expect(cookie).toContain('HttpOnly');
+    expect(cookie).toContain('SameSite=Lax');
+    expect(cookie).not.toContain('Secure');
+    expect(cookie).not.toContain('Domain=');
+
     expect(response.body as unknown).toEqual({
       user,
       session: {
@@ -208,6 +221,13 @@ describe('IdentityController HTTP contracts', () => {
 
     expect(response.text).toBe('');
     expect(response.headers['content-type']).toBeUndefined();
+    expect(response.headers['cache-control']).toBe('no-store');
+    expect(response.headers['set-cookie']?.[0]).toContain(
+      'marketplace_session=;',
+    );
+    expect(response.headers['set-cookie']?.[0]).toContain(
+      'Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+    );
   });
 
   it('accepts a password reset request neutrally', async () => {
