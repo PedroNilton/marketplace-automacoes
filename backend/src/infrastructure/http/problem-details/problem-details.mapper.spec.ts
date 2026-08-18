@@ -21,11 +21,23 @@ import { RegistrationRateLimitExceededError } from '../../../identity/applicatio
 import { InvalidEmailError } from '../../../identity/domain/invalid-email.error';
 import { InvalidPasswordError } from '../../../identity/domain/invalid-password.error';
 import { ProblemDetailsMapper } from './problem-details.mapper';
+import { RequestValidationError } from '../validation/request-validation.error';
 
 describe('ProblemDetailsMapper', () => {
   const mapper = new ProblemDetailsMapper();
 
   it.each([
+    [
+      new RequestValidationError([
+        {
+          field: 'email',
+          code: 'invalid_value',
+          message: 'Informe um valor válido.',
+        },
+      ]),
+      'email',
+      'invalid_value',
+    ],
     [new InvalidEmailError('EMPTY'), 'email', 'email_required'],
     [new InvalidEmailError('INVALID_FORMAT'), 'email', 'email_invalid_format'],
     [new InvalidPasswordError('TOO_SHORT'), 'password', 'password_too_short'],

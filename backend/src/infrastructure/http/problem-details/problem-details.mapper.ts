@@ -20,6 +20,7 @@ import {
   InvalidPasswordReason,
 } from '../../../identity/domain/invalid-password.error';
 import { ProblemDescriptor, ProblemFieldError } from './problem-details';
+import { RequestValidationError } from '../validation/request-validation.error';
 
 @Injectable()
 export class ProblemDetailsMapper {
@@ -89,6 +90,10 @@ export class ProblemDetailsMapper {
 function mapFieldErrors(
   exception: unknown,
 ): readonly ProblemFieldError[] | null {
+  if (exception instanceof RequestValidationError) {
+    return exception.issues;
+  }
+
   if (exception instanceof InvalidEmailError) {
     return [emailError(exception.reason)];
   }
