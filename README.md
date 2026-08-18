@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-027 |
-| **Próximo passo** | T-001-028 — Emissão e remoção segura do cookie |
+| **Concluído** | Tarefas T-001-001 a T-001-028 |
+| **Próximo passo** | T-001-029 — Guard e identidade da requisição |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -45,13 +45,14 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login, identidade atual, logout idempotente e recuperação completa de senha
 - Erros HTTP padronizados com Problem Details, códigos públicos estáveis e identificadores opacos
 - Oito contratos REST de identidade com DTOs validados e documentação OpenAPI
+- Cookie de sessão opaco emitido e removido com atributos seguros por ambiente
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
 - Jornada utilizável de cadastro, confirmação e login pela interface
-- Cookie de sessão e proteções de navegador completas
+- Guards de identidade e proteções de navegador completas
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -219,4 +220,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar a emissão e a remoção segura do cookie de sessão pela tarefa `T-001-028`, respeitando os atributos definidos no ADR-002 para cada ambiente.
+Implementar o guard e a identidade da requisição pela tarefa `T-001-029`, fornecendo às rotas futuras uma identidade mínima validada sem expor objetos de persistência.
