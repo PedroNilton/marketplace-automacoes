@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-026 |
-| **Próximo passo** | T-001-027 — Controllers e DTOs de identidade |
+| **Concluído** | Tarefas T-001-001 a T-001-027 |
+| **Próximo passo** | T-001-028 — Emissão e remoção segura do cookie |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -44,13 +44,14 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Tokens seguros, sessões e limitação de tentativas
 - Casos de uso transacionais de cadastro, confirmação, reenvio controlado, login, identidade atual, logout idempotente e recuperação completa de senha
 - Erros HTTP padronizados com Problem Details, códigos públicos estáveis e identificadores opacos
+- Oito contratos REST de identidade com DTOs validados e documentação OpenAPI
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
 - Jornada utilizável de cadastro, confirmação e login pela interface
-- Endpoints públicos completos de identidade
+- Cookie de sessão e proteções de navegador completas
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -218,4 +219,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar os controllers e DTOs de identidade pela tarefa `T-001-027`, expondo os oito contratos REST sem mover regras de negócio ou acesso ao Prisma para a camada HTTP.
+Implementar a emissão e a remoção segura do cookie de sessão pela tarefa `T-001-028`, respeitando os atributos definidos no ADR-002 para cada ambiente.

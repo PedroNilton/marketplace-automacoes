@@ -1,8 +1,8 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.15.0
+- **Versão:** 1.16.0
 - **Status:** Ativo
-- **Data:** 16 de agosto de 2026
+- **Data:** 18 de agosto de 2026
 - **Método:** Spec-Driven Development
 
 ## 1. Objetivo
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-026 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, cadastro, confirmação, reenvio controlado, login, resolução da identidade atual, logout idempotente, recuperação completa de senha e Problem Details global.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-027 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global e os oito contratos REST com DTOs e OpenAPI.
 
-O próximo incremento executável é `T-001-027` — controllers e DTOs dos oito contratos REST de identidade. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-028` — emissão e remoção segura do cookie de sessão. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-027` na Spec 001: expor os oito contratos REST e seus DTOs, mantendo controllers sem regra de negócio ou acesso direto ao Prisma. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-028` na Spec 001: emitir o cookie após login e removê-lo no logout com atributos seguros por ambiente, conforme o ADR-002. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.

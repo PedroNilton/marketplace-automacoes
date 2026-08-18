@@ -245,7 +245,7 @@
 
 ### T-001-027 — Implementar controllers e DTOs de identidade
 
-- [ ] Expor os oito contratos REST e anotações OpenAPI do plano.
+- [x] Expor os oito contratos REST e anotações OpenAPI do plano.
 - Referências: RF-IDA-001 a RF-IDA-007, plano §7.
 - Dependências: T-001-018 a T-001-025, T-001-026.
 - Resultado: nenhum controller contém regra de negócio ou acesso Prisma direto.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-026. O próximo incremento é T-001-027 — implementar controllers e DTOs dos contratos REST de identidade.
+A implementação concluiu as tarefas T-001-001 a T-001-027. O próximo incremento é T-001-028 — implementar emissão e remoção segura do cookie.
