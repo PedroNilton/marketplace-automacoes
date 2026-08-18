@@ -4,6 +4,7 @@ import { AccountUnavailableError } from '../../../identity/application/errors/ac
 import { AuthenticationRequiredError } from '../../../identity/application/errors/authentication-required.error';
 import { EmailVerificationResendRateLimitExceededError } from '../../../identity/application/errors/email-verification-resend-rate-limit-exceeded.error';
 import { InvalidLoginCredentialsError } from '../../../identity/application/errors/invalid-login-credentials.error';
+import { InvalidOrExpiredTokenError } from '../../../identity/application/errors/invalid-or-expired-token.error';
 import {
   InvalidRegistrationInputError,
   InvalidRegistrationInputReason,
@@ -20,6 +21,7 @@ import {
   InvalidPasswordReason,
 } from '../../../identity/domain/invalid-password.error';
 import { ProblemDescriptor, ProblemFieldError } from './problem-details';
+import { RequestValidationError } from '../validation/request-validation.error';
 
 @Injectable()
 export class ProblemDetailsMapper {
@@ -58,6 +60,15 @@ export class ProblemDetailsMapper {
       );
     }
 
+    if (exception instanceof InvalidOrExpiredTokenError) {
+      return descriptor(
+        HttpStatus.BAD_REQUEST,
+        'invalid-or-expired-token',
+        'invalid_or_expired_token',
+        'O token é inválido ou expirou.',
+      );
+    }
+
     const retryAfterSeconds = rateLimitRetryAfter(exception);
     if (retryAfterSeconds !== null) {
       return descriptor(
@@ -89,6 +100,10 @@ export class ProblemDetailsMapper {
 function mapFieldErrors(
   exception: unknown,
 ): readonly ProblemFieldError[] | null {
+  if (exception instanceof RequestValidationError) {
+    return exception.issues;
+  }
+
   if (exception instanceof InvalidEmailError) {
     return [emailError(exception.reason)];
   }

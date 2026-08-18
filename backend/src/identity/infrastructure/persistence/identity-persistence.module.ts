@@ -55,6 +55,7 @@ import { HmacCsrfTokenDeriver } from '../security/hmac-csrf-token-deriver';
     CsrfTokenDeriver,
     RateLimitKeyDigester,
     RateLimitRepository,
+    PrismaModule,
   ],
 })
 export class IdentityPersistenceModule {}
