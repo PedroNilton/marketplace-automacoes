@@ -14,6 +14,7 @@ import { AccountUnavailableError } from '../../../identity/application/errors/ac
 import { AuthenticationRequiredError } from '../../../identity/application/errors/authentication-required.error';
 import { EmailVerificationResendRateLimitExceededError } from '../../../identity/application/errors/email-verification-resend-rate-limit-exceeded.error';
 import { InvalidLoginCredentialsError } from '../../../identity/application/errors/invalid-login-credentials.error';
+import { InvalidOrExpiredTokenError } from '../../../identity/application/errors/invalid-or-expired-token.error';
 import { InvalidRegistrationInputError } from '../../../identity/application/errors/invalid-registration-input.error';
 import { LoginRateLimitExceededError } from '../../../identity/application/errors/login-rate-limit-exceeded.error';
 import { PasswordResetRateLimitExceededError } from '../../../identity/application/errors/password-reset-rate-limit-exceeded.error';
@@ -67,6 +68,13 @@ describe('ProblemDetailsMapper', () => {
       });
     },
   );
+
+  it('maps invalid or expired tokens to the generic public contract', () => {
+    expect(mapper.map(new InvalidOrExpiredTokenError())).toMatchObject({
+      status: 400,
+      code: 'invalid_or_expired_token',
+    });
+  });
 
   it.each([
     [new AuthenticationRequiredError(), 'authentication_required'],

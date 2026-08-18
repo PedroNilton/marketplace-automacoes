@@ -4,6 +4,7 @@ import { AccountUnavailableError } from '../../../identity/application/errors/ac
 import { AuthenticationRequiredError } from '../../../identity/application/errors/authentication-required.error';
 import { EmailVerificationResendRateLimitExceededError } from '../../../identity/application/errors/email-verification-resend-rate-limit-exceeded.error';
 import { InvalidLoginCredentialsError } from '../../../identity/application/errors/invalid-login-credentials.error';
+import { InvalidOrExpiredTokenError } from '../../../identity/application/errors/invalid-or-expired-token.error';
 import {
   InvalidRegistrationInputError,
   InvalidRegistrationInputReason,
@@ -56,6 +57,15 @@ export class ProblemDetailsMapper {
         'account-unavailable',
         'account_unavailable',
         'A conta não está disponível para esta operação.',
+      );
+    }
+
+    if (exception instanceof InvalidOrExpiredTokenError) {
+      return descriptor(
+        HttpStatus.BAD_REQUEST,
+        'invalid-or-expired-token',
+        'invalid_or_expired_token',
+        'O token é inválido ou expirou.',
       );
     }
 
