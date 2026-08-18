@@ -1,9 +1,9 @@
-import { readSessionCookie } from './session-cookie';
+import { readCookie } from './session-cookie';
 
-describe('readSessionCookie', () => {
+describe('readCookie', () => {
   it('reads only the cookie with the exact configured name', () => {
     expect(
-      readSessionCookie(
+      readCookie(
         'other=ignored; marketplace_session=token-123',
         'marketplace_session',
       ),
@@ -16,6 +16,6 @@ describe('readSessionCookie', () => {
     ['marketplace_session=one; marketplace_session=two'],
     ['marketplace_session=%E0%A4%A'],
   ])('rejects missing, empty, duplicate or malformed values', (header) => {
-    expect(readSessionCookie(header, 'marketplace_session')).toBeNull();
+    expect(readCookie(header, 'marketplace_session')).toBeNull();
   });
 });

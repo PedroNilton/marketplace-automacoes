@@ -7,8 +7,8 @@ import {
   HttpCode,
   Post,
   Req,
+  Res,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import {
   ApiAcceptedResponse,
   ApiBadRequestResponse,
@@ -21,8 +21,7 @@ import {
   ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import type { Request } from 'express';
-import type { Environment } from '../../../config/environment';
+import type { Request, Response } from 'express';
 import { ZodBodyPipe } from '../../../infrastructure/http/validation/zod-body.pipe';
 import { ConfirmEmailVerification } from '../../application/confirm-email-verification';
 import { ConfirmPasswordReset } from '../../application/confirm-password-reset';
@@ -48,7 +47,7 @@ import {
   tokenConfirmationRequestSchema,
   TokenConfirmationRequestDto,
 } from './identity.dto';
-import { readSessionCookie } from './session-cookie';
+import { SessionCookie } from './session-cookie';
 
 const REGISTRATION_ACCEPTED_MESSAGE =
   'Se o cadastro puder ser concluído, enviaremos as instruções para o e-mail informado.';
@@ -60,8 +59,6 @@ const PASSWORD_RESET_ACCEPTED_MESSAGE =
 @ApiTags('Identidade e acesso')
 @Controller('v1/auth')
 export class IdentityController {
-  private readonly sessionCookieName: string;
-
   constructor(
     private readonly registerUser: RegisterUser,
     private readonly confirmEmailVerification: ConfirmEmailVerification,
@@ -71,10 +68,8 @@ export class IdentityController {
     private readonly logoutSession: LogoutSession,
     private readonly requestPasswordReset: RequestPasswordReset,
     private readonly confirmPasswordReset: ConfirmPasswordReset,
-    config: ConfigService<Environment, true>,
-  ) {
-    this.sessionCookieName = config.get('SESSION_COOKIE_NAME', { infer: true });
-  }
+    private readonly sessionCookie: SessionCookie,
+  ) {}
 
   @Post('registrations')
   @HttpCode(202)
@@ -134,6 +129,7 @@ export class IdentityController {
 
   @Post('sessions')
   @HttpCode(200)
+  @Header('Cache-Control', 'no-store')
   @ApiOperation({ summary: 'Inicia uma sessão' })
   @ApiBody({ type: LoginRequestDto })
   @ApiOkResponse({ type: LoginResponseDto })
@@ -142,11 +138,17 @@ export class IdentityController {
   async login(
     @Body(new ZodBodyPipe(loginRequestSchema)) body: LoginRequestDto,
     @Req() request: Request,
+    @Res({ passthrough: true }) response: Response,
   ): Promise<LoginResponseDto> {
     const result = await this.loginUser.execute({
       ...body,
       originIdentifier: originIdentifier(request),
     });
+    this.sessionCookie.issue(
+      response,
+      result.session.token,
+      result.session.absoluteExpiresAt,
+    );
 
     return {
       user: result.user,
@@ -171,12 +173,17 @@ export class IdentityController {
 
   @Delete('session')
   @HttpCode(204)
+  @Header('Cache-Control', 'no-store')
   @ApiOperation({ summary: 'Encerra a sessão atual' })
   @ApiNoContentResponse({ description: 'Sessão encerrada.' })
-  async logout(@Req() request: Request): Promise<void> {
+  async logout(
+    @Req() request: Request,
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<void> {
     await this.logoutSession.execute({
       sessionToken: this.sessionToken(request),
     });
+    this.sessionCookie.remove(response);
   }
 
   @Post('password-resets/requests')
@@ -217,7 +224,7 @@ export class IdentityController {
   }
 
   private sessionToken(request: Request): string | null {
-    return readSessionCookie(request.headers.cookie, this.sessionCookieName);
+    return this.sessionCookie.read(request.headers.cookie);
   }
 }
 

@@ -15,6 +15,7 @@ import { RegisterUser } from '../../application/register-user';
 import { RequestPasswordReset } from '../../application/request-password-reset';
 import { ResendEmailVerification } from '../../application/resend-email-verification';
 import { IdentityController } from './identity.controller';
+import { SessionCookie } from './session-cookie';
 
 const user = {
   id: '018f99f6-c71c-7f03-a4f5-f03d3427f196',
@@ -45,6 +46,7 @@ describe('IdentityController HTTP contracts', () => {
       imports: [ProblemDetailsModule],
       controllers: [IdentityController],
       providers: [
+        SessionCookie,
         { provide: RegisterUser, useValue: registerUser },
         {
           provide: ConfirmEmailVerification,
@@ -58,7 +60,14 @@ describe('IdentityController HTTP contracts', () => {
         { provide: ConfirmPasswordReset, useValue: confirmPasswordReset },
         {
           provide: ConfigService,
-          useValue: { get: () => 'marketplace_session' },
+          useValue: {
+            get: (key: string) =>
+              ({
+                SESSION_COOKIE_NAME: 'marketplace_session',
+                SESSION_COOKIE_SECURE: false,
+                SESSION_COOKIE_SAME_SITE: 'lax',
+              })[key],
+          },
         },
       ],
     }).compile();
