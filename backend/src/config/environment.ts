@@ -58,6 +58,8 @@ export const environmentSchema = z
     PASSWORD_RESET_MAX_PER_HOUR: positiveIntegerSchema.default(5),
     LOGIN_PROGRESSIVE_DELAY_AFTER: positiveIntegerSchema.default(5),
     LOGIN_TEMP_BLOCK_MAX: positiveIntegerSchema.default(900),
+    CURRENT_TERMS_VERSION: z.string().trim().min(1).max(32).default('beta-1'),
+    CURRENT_PRIVACY_VERSION: z.string().trim().min(1).max(32).default('beta-1'),
     ARGON2_MEMORY_KIB: argon2MemorySchema.default(19456),
     ARGON2_ITERATIONS: argon2IterationsSchema.default(2),
     ARGON2_PARALLELISM: argon2ParallelismSchema.default(1),
