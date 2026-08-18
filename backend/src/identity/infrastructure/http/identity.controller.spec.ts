@@ -15,6 +15,7 @@ import { RegisterUser } from '../../application/register-user';
 import { RequestPasswordReset } from '../../application/request-password-reset';
 import { ResendEmailVerification } from '../../application/resend-email-verification';
 import { IdentityController } from './identity.controller';
+import { SessionCookie } from './session-cookie';
 
 const user = {
   id: '018f99f6-c71c-7f03-a4f5-f03d3427f196',
@@ -45,6 +46,7 @@ describe('IdentityController HTTP contracts', () => {
       imports: [ProblemDetailsModule],
       controllers: [IdentityController],
       providers: [
+        SessionCookie,
         { provide: RegisterUser, useValue: registerUser },
         {
           provide: ConfirmEmailVerification,
@@ -58,7 +60,14 @@ describe('IdentityController HTTP contracts', () => {
         { provide: ConfirmPasswordReset, useValue: confirmPasswordReset },
         {
           provide: ConfigService,
-          useValue: { get: () => 'marketplace_session' },
+          useValue: {
+            get: (key: string) =>
+              ({
+                SESSION_COOKIE_NAME: 'marketplace_session',
+                SESSION_COOKIE_SECURE: false,
+                SESSION_COOKIE_SAME_SITE: 'lax',
+              })[key],
+          },
         },
       ],
     }).compile();
@@ -164,6 +173,19 @@ describe('IdentityController HTTP contracts', () => {
       .expect(200)
       .expect('Content-Type', /json/);
 
+    expect(response.headers['cache-control']).toBe('no-store');
+    expect(response.headers['set-cookie']).toEqual([
+      expect.stringContaining(
+        'marketplace_session=raw-session-token-must-not-leak',
+      ),
+    ]);
+    const cookie = response.headers['set-cookie']?.[0] ?? '';
+    expect(cookie).toContain('Path=/');
+    expect(cookie).toContain('HttpOnly');
+    expect(cookie).toContain('SameSite=Lax');
+    expect(cookie).not.toContain('Secure');
+    expect(cookie).not.toContain('Domain=');
+
     expect(response.body as unknown).toEqual({
       user,
       session: {
@@ -199,6 +221,13 @@ describe('IdentityController HTTP contracts', () => {
 
     expect(response.text).toBe('');
     expect(response.headers['content-type']).toBeUndefined();
+    expect(response.headers['cache-control']).toBe('no-store');
+    expect(response.headers['set-cookie']?.[0]).toContain(
+      'marketplace_session=;',
+    );
+    expect(response.headers['set-cookie']?.[0]).toContain(
+      'Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+    );
   });
 
   it('accepts a password reset request neutrally', async () => {

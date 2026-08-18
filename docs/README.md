@@ -104,8 +104,8 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 
 - Fundação documental: concluída.
 - Spec 001 — Identidade e acesso: em implementação.
-- Código: fundação executável, persistência base, valores de e-mail/senha, relógio, tokens seguros, retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global e os oito contratos REST documentados em OpenAPI concluídos.
-- Próxima tarefa: `T-001-028` — implementar emissão e remoção segura do cookie.
+- Código: fundação executável, persistência base, valores de e-mail/senha, relógio, tokens seguros, retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST e cookie seguro por ambiente concluídos.
+- Próxima tarefa: `T-001-029` — implementar guard e identidade da requisição.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.

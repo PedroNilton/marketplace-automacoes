@@ -253,7 +253,7 @@
 
 ### T-001-028 — Implementar emissão e remoção do cookie
 
-- [ ] Aplicar nome por ambiente, `HttpOnly`, `Secure`, `SameSite=Lax`, `Path=/`, sem `Domain` e `no-store`.
+- [x] Aplicar nome por ambiente, `HttpOnly`, `Secure`, `SameSite=Lax`, `Path=/`, sem `Domain` e `no-store`.
 - Referências: ADR-002, AC-001-08/13.
 - Dependências: T-001-021, T-001-023, T-001-027.
 - Resultado: configuração insegura não chega à beta.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-027. O próximo incremento é T-001-028 — implementar emissão e remoção segura do cookie.
+A implementação concluiu as tarefas T-001-001 a T-001-028. O próximo incremento é T-001-029 — implementar guard e identidade da requisição.
