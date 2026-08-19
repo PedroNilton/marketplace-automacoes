@@ -26,7 +26,6 @@ import { ZodBodyPipe } from '../../../infrastructure/http/validation/zod-body.pi
 import { ConfirmEmailVerification } from '../../application/confirm-email-verification';
 import { ConfirmPasswordReset } from '../../application/confirm-password-reset';
 import { InvalidOrExpiredTokenError } from '../../application/errors/invalid-or-expired-token.error';
-import { GetCurrentIdentity } from '../../application/get-current-identity';
 import { LoginUser } from '../../application/login-user';
 import { LogoutSession } from '../../application/logout-session';
 import { RegisterUser } from '../../application/register-user';
@@ -48,6 +47,9 @@ import {
   TokenConfirmationRequestDto,
 } from './identity.dto';
 import { SessionCookie } from './session-cookie';
+import { CurrentIdentity } from './current-identity.decorator';
+import { AllowRestrictedSession } from './identity-access.decorator';
+import type { RequestIdentity } from './request-identity';
 
 const REGISTRATION_ACCEPTED_MESSAGE =
   'Se o cadastro puder ser concluído, enviaremos as instruções para o e-mail informado.';
@@ -64,7 +66,6 @@ export class IdentityController {
     private readonly confirmEmailVerification: ConfirmEmailVerification,
     private readonly resendEmailVerification: ResendEmailVerification,
     private readonly loginUser: LoginUser,
-    private readonly getCurrentIdentity: GetCurrentIdentity,
     private readonly logoutSession: LogoutSession,
     private readonly requestPasswordReset: RequestPasswordReset,
     private readonly confirmPasswordReset: ConfirmPasswordReset,
@@ -162,13 +163,14 @@ export class IdentityController {
 
   @Get('session')
   @Header('Cache-Control', 'no-store')
+  @AllowRestrictedSession()
   @ApiOperation({ summary: 'Obtém a identidade da sessão atual' })
   @ApiOkResponse({ type: CurrentIdentityResponseDto })
   @ApiUnauthorizedResponse({ description: 'Autenticação necessária.' })
-  current(@Req() request: Request): Promise<CurrentIdentityResponseDto> {
-    return this.getCurrentIdentity.execute({
-      sessionToken: this.sessionToken(request),
-    });
+  current(
+    @CurrentIdentity() identity: RequestIdentity,
+  ): CurrentIdentityResponseDto {
+    return identity;
   }
 
   @Delete('session')
