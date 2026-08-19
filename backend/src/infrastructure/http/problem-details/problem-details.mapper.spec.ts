@@ -13,11 +13,13 @@ import { UniqueConstraintViolationError } from '../../../application/errors/uniq
 import { AccountUnavailableError } from '../../../identity/application/errors/account-unavailable.error';
 import { AuthenticationRequiredError } from '../../../identity/application/errors/authentication-required.error';
 import { EmailVerificationResendRateLimitExceededError } from '../../../identity/application/errors/email-verification-resend-rate-limit-exceeded.error';
+import { EmailVerificationRequiredError } from '../../../identity/application/errors/email-verification-required.error';
 import { InvalidLoginCredentialsError } from '../../../identity/application/errors/invalid-login-credentials.error';
 import { InvalidOrExpiredTokenError } from '../../../identity/application/errors/invalid-or-expired-token.error';
 import { InvalidRegistrationInputError } from '../../../identity/application/errors/invalid-registration-input.error';
 import { LoginRateLimitExceededError } from '../../../identity/application/errors/login-rate-limit-exceeded.error';
 import { PasswordResetRateLimitExceededError } from '../../../identity/application/errors/password-reset-rate-limit-exceeded.error';
+import { PlatformAccessDeniedError } from '../../../identity/application/errors/platform-access-denied.error';
 import { RegistrationRateLimitExceededError } from '../../../identity/application/errors/registration-rate-limit-exceeded.error';
 import { InvalidEmailError } from '../../../identity/domain/invalid-email.error';
 import { InvalidPasswordError } from '../../../identity/domain/invalid-password.error';
@@ -81,6 +83,8 @@ describe('ProblemDetailsMapper', () => {
     [new UnauthorizedException('unsafe'), 'authentication_required'],
     [new InvalidLoginCredentialsError(), 'invalid_credentials'],
     [new AccountUnavailableError(), 'account_unavailable'],
+    [new EmailVerificationRequiredError(), 'email_verification_required'],
+    [new PlatformAccessDeniedError(), 'access_denied'],
     [new ForbiddenException('unsafe'), 'access_denied'],
   ])(
     'maps authentication and authorization without internal detail',
