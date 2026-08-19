@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-028 |
-| **Próximo passo** | T-001-029 — Guard e identidade da requisição |
+| **Concluído** | Tarefas T-001-001 a T-001-029 |
+| **Próximo passo** | T-001-030 — CORS, origem e CSRF |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -46,13 +46,14 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Erros HTTP padronizados com Problem Details, códigos públicos estáveis e identificadores opacos
 - Oito contratos REST de identidade com DTOs validados e documentação OpenAPI
 - Cookie de sessão opaco emitido e removido com atributos seguros por ambiente
+- Guards declarativos para sessão verificada, sessão restrita e papel de plataforma
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
 - Jornada utilizável de cadastro, confirmação e login pela interface
-- Guards de identidade e proteções de navegador completas
+- Proteções de origem, CORS e CSRF completas
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -220,4 +221,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o guard e a identidade da requisição pela tarefa `T-001-029`, fornecendo às rotas futuras uma identidade mínima validada sem expor objetos de persistência.
+Implementar CORS, validação de origem e proteção CSRF pela tarefa `T-001-030`, exigindo origem explícita e prova CSRF nas mutações autenticadas.

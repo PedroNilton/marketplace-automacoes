@@ -261,7 +261,7 @@
 
 ### T-001-029 — Implementar guard e identidade da requisição
 
-- [ ] Fornecer decorators/guards para sessão comum, sessão restrita e permissão administrativa futura.
+- [x] Fornecer decorators/guards para sessão comum, sessão restrita e permissão administrativa futura.
 - Referências: BR-IDA-004/005/007/008, AC-001-09/11/17.
 - Dependências: T-001-022, T-001-027.
 - Resultado: módulos futuros recebem identidade, nunca objeto Prisma de credencial.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-028. O próximo incremento é T-001-029 — implementar guard e identidade da requisição.
+A implementação concluiu as tarefas T-001-001 a T-001-029. O próximo incremento é T-001-030 — implementar CORS, origem e CSRF.
