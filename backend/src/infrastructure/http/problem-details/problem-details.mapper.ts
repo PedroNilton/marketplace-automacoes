@@ -3,6 +3,7 @@ import { UniqueConstraintViolationError } from '../../../application/errors/uniq
 import { AccountUnavailableError } from '../../../identity/application/errors/account-unavailable.error';
 import { AuthenticationRequiredError } from '../../../identity/application/errors/authentication-required.error';
 import { EmailVerificationResendRateLimitExceededError } from '../../../identity/application/errors/email-verification-resend-rate-limit-exceeded.error';
+import { EmailVerificationRequiredError } from '../../../identity/application/errors/email-verification-required.error';
 import { InvalidLoginCredentialsError } from '../../../identity/application/errors/invalid-login-credentials.error';
 import { InvalidOrExpiredTokenError } from '../../../identity/application/errors/invalid-or-expired-token.error';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../../identity/application/errors/invalid-registration-input.error';
 import { LoginRateLimitExceededError } from '../../../identity/application/errors/login-rate-limit-exceeded.error';
 import { PasswordResetRateLimitExceededError } from '../../../identity/application/errors/password-reset-rate-limit-exceeded.error';
+import { PlatformAccessDeniedError } from '../../../identity/application/errors/platform-access-denied.error';
 import { RegistrationRateLimitExceededError } from '../../../identity/application/errors/registration-rate-limit-exceeded.error';
 import {
   InvalidEmailError,
@@ -57,6 +59,24 @@ export class ProblemDetailsMapper {
         'account-unavailable',
         'account_unavailable',
         'A conta não está disponível para esta operação.',
+      );
+    }
+
+    if (exception instanceof EmailVerificationRequiredError) {
+      return descriptor(
+        HttpStatus.FORBIDDEN,
+        'email-verification-required',
+        'email_verification_required',
+        'Confirme seu e-mail para continuar.',
+      );
+    }
+
+    if (exception instanceof PlatformAccessDeniedError) {
+      return descriptor(
+        HttpStatus.FORBIDDEN,
+        'access-denied',
+        'access_denied',
+        'Acesso não permitido.',
       );
     }
 

@@ -15,6 +15,7 @@ import { RegisterUser } from '../../application/register-user';
 import { RequestPasswordReset } from '../../application/request-password-reset';
 import { ResendEmailVerification } from '../../application/resend-email-verification';
 import { IdentityController } from './identity.controller';
+import { IdentityAccessGuard } from './identity-access.guard';
 import { SessionCookie } from './session-cookie';
 
 const user = {
@@ -47,6 +48,7 @@ describe('IdentityController HTTP contracts', () => {
       controllers: [IdentityController],
       providers: [
         SessionCookie,
+        IdentityAccessGuard,
         { provide: RegisterUser, useValue: registerUser },
         {
           provide: ConfirmEmailVerification,
