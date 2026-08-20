@@ -277,7 +277,7 @@
 
 ### T-001-031 — Integrar limites aos endpoints
 
-- [ ] Aplicar chaves e janelas específicas antes de operações caras, especialmente Argon2id e SMTP.
+- [x] Aplicar chaves e janelas específicas antes de operações caras, especialmente Argon2id e SMTP.
 - Referências: AC-001-07/10/14, plano §11.
 - Dependências: T-001-017, T-001-027.
 - Resultado: `429` consistente e `Retry-After` quando aplicável.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-030. O próximo incremento é T-001-031 — integrar limites aos endpoints.
+A implementação concluiu as tarefas T-001-001 a T-001-031. O próximo incremento é T-001-032 — implementar SMTP local e porta de e-mail.
