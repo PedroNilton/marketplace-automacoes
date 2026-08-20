@@ -1,8 +1,8 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.18.0
+- **Versão:** 1.19.0
 - **Status:** Ativo
-- **Data:** 19 de agosto de 2026
+- **Data:** 20 de agosto de 2026
 - **Método:** Spec-Driven Development
 
 ## 1. Objetivo
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-029 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST, cookie seguro e guards de identidade.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-030 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST, cookie seguro, guards de identidade e proteção de navegador com CORS, origem e CSRF.
 
-O próximo incremento executável é `T-001-030` — CORS, origem e CSRF. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-031` — integrar limites aos endpoints. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-030` na Spec 001: exigir origem explícita, JSON e `X-CSRF-Token` nas mutações autenticadas, além de CORS restrito à origem configurada. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-031` na Spec 001: aplicar chaves e janelas específicas antes de operações caras, com resposta `429` e `Retry-After` consistentes. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
