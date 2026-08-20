@@ -25,6 +25,7 @@ import {
 import { ProblemDescriptor, ProblemFieldError } from './problem-details';
 import { RequestValidationError } from '../validation/request-validation.error';
 import { OriginValidationFailedError } from '../browser-protection/origin-validation-failed.error';
+import { CsrfValidationFailedError } from '../browser-protection/csrf-validation-failed.error';
 
 @Injectable()
 export class ProblemDetailsMapper {
@@ -87,6 +88,15 @@ export class ProblemDetailsMapper {
         'origin-validation-failed',
         'origin_validation_failed',
         'A origem da solicitação não é permitida.',
+      );
+    }
+
+    if (exception instanceof CsrfValidationFailedError) {
+      return descriptor(
+        HttpStatus.FORBIDDEN,
+        'csrf-validation-failed',
+        'csrf_validation_failed',
+        'Não foi possível validar a proteção da solicitação.',
       );
     }
 

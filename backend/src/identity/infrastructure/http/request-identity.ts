@@ -33,11 +33,15 @@ export function attachRequestIdentity(
 }
 
 export function requireRequestIdentity(request: Request): RequestIdentity {
-  const identity = (request as RequestWithIdentity)[REQUEST_IDENTITY];
+  const identity = findRequestIdentity(request);
 
   if (!identity) {
     throw new AuthenticationRequiredError();
   }
 
   return identity;
+}
+
+export function findRequestIdentity(request: Request): RequestIdentity | null {
+  return (request as RequestWithIdentity)[REQUEST_IDENTITY] ?? null;
 }

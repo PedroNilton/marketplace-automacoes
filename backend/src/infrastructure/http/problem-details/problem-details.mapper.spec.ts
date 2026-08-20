@@ -26,6 +26,7 @@ import { InvalidPasswordError } from '../../../identity/domain/invalid-password.
 import { ProblemDetailsMapper } from './problem-details.mapper';
 import { RequestValidationError } from '../validation/request-validation.error';
 import { OriginValidationFailedError } from '../browser-protection/origin-validation-failed.error';
+import { CsrfValidationFailedError } from '../browser-protection/csrf-validation-failed.error';
 
 describe('ProblemDetailsMapper', () => {
   const mapper = new ProblemDetailsMapper();
@@ -87,6 +88,7 @@ describe('ProblemDetailsMapper', () => {
     [new EmailVerificationRequiredError(), 'email_verification_required'],
     [new PlatformAccessDeniedError(), 'access_denied'],
     [new OriginValidationFailedError(), 'origin_validation_failed'],
+    [new CsrfValidationFailedError(), 'csrf_validation_failed'],
     [new ForbiddenException('unsafe'), 'access_denied'],
   ])(
     'maps authentication and authorization without internal detail',

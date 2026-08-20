@@ -8,7 +8,7 @@ import {
   IDENTITY_ACCESS_POLICY,
   IdentityAccessPolicy,
 } from './identity-access-policy';
-import { attachRequestIdentity } from './request-identity';
+import { attachRequestIdentity, findRequestIdentity } from './request-identity';
 import { SessionCookie } from './session-cookie';
 
 @Injectable()
@@ -30,9 +30,12 @@ export class IdentityAccessGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest<Request>();
-    const identity = await this.getCurrentIdentity.execute({
-      sessionToken: this.sessionCookie.read(request.headers.cookie),
-    });
+    const attachedIdentity = findRequestIdentity(request);
+    const identity =
+      attachedIdentity ??
+      (await this.getCurrentIdentity.execute({
+        sessionToken: this.sessionCookie.read(request.headers.cookie),
+      }));
 
     if (identity.session.restricted && !policy.allowRestricted) {
       throw new EmailVerificationRequiredError();
@@ -45,7 +48,9 @@ export class IdentityAccessGuard implements CanActivate {
       throw new PlatformAccessDeniedError();
     }
 
-    attachRequestIdentity(request, identity);
+    if (!attachedIdentity) {
+      attachRequestIdentity(request, identity);
+    }
     return true;
   }
 }

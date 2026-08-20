@@ -3,6 +3,7 @@ import { AuthenticationRequiredError } from '../../application/errors/authentica
 import {
   attachRequestIdentity,
   RequestIdentity,
+  findRequestIdentity,
   requireRequestIdentity,
 } from './request-identity';
 
@@ -23,11 +24,13 @@ describe('request identity', () => {
     attachRequestIdentity(request, identity);
 
     expect(requireRequestIdentity(request)).toBe(identity);
+    expect(findRequestIdentity(request)).toBe(identity);
     expect(Object.keys(request)).toEqual([]);
     expect(JSON.stringify(request)).not.toContain('csrf-token');
   });
 
   it('rejects access when no guard attached an identity', () => {
+    expect(findRequestIdentity({} as Request)).toBeNull();
     expect(() => requireRequestIdentity({} as Request)).toThrow(
       AuthenticationRequiredError,
     );
