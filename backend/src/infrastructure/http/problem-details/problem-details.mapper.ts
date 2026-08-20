@@ -24,6 +24,7 @@ import {
 } from '../../../identity/domain/invalid-password.error';
 import { ProblemDescriptor, ProblemFieldError } from './problem-details';
 import { RequestValidationError } from '../validation/request-validation.error';
+import { OriginValidationFailedError } from '../browser-protection/origin-validation-failed.error';
 
 @Injectable()
 export class ProblemDetailsMapper {
@@ -77,6 +78,15 @@ export class ProblemDetailsMapper {
         'access-denied',
         'access_denied',
         'Acesso não permitido.',
+      );
+    }
+
+    if (exception instanceof OriginValidationFailedError) {
+      return descriptor(
+        HttpStatus.FORBIDDEN,
+        'origin-validation-failed',
+        'origin_validation_failed',
+        'A origem da solicitação não é permitida.',
       );
     }
 
