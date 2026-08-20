@@ -72,6 +72,16 @@ describe('validateEnvironment', () => {
     ).toThrow(/PORT:|DATABASE_URL:/);
   });
 
+  it.each([
+    ['FRONTEND_ORIGIN', 'http://127.0.0.1:3000/'],
+    ['FRONTEND_ORIGIN', 'http://127.0.0.1:3000/login'],
+    ['API_ORIGIN', 'http://127.0.0.1:3001?debug=true'],
+  ])('rejects %s when it is not an exact origin', (key, value) => {
+    expect(() =>
+      validateEnvironment({ ...validBaseEnvironment, [key]: value }),
+    ).toThrow(new RegExp(`${key}:`));
+  });
+
   it('rejects a missing or weak HMAC secret without exposing its value', () => {
     try {
       validateEnvironment({
