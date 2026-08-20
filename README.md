@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-030 |
-| **Próximo passo** | T-001-031 — limites por endpoint |
+| **Concluído** | Tarefas T-001-001 a T-001-031 |
+| **Próximo passo** | T-001-032 — SMTP local e porta de e-mail |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -48,13 +48,14 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Cookie de sessão opaco emitido e removido com atributos seguros por ambiente
 - Guards declarativos para sessão verificada, sessão restrita e papel de plataforma
 - CORS restrito, validação de origem e proteção CSRF nas mutações autenticadas
+- Limites por conta e origem aplicados aos endpoints sensíveis, com `429` e `Retry-After`
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
 - Jornada utilizável de cadastro, confirmação e login pela interface
-- Limites específicos aplicados aos endpoints sensíveis
+- Envio transacional de e-mails pela aplicação
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -222,4 +223,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Integrar os limites de uso aos endpoints sensíveis pela tarefa `T-001-031`, antes de operações caras como Argon2id e envio de e-mail.
+Implementar o adaptador SMTP local e a porta de e-mail pela tarefa `T-001-032`, entregando mensagens ao Mailpit sem acoplar os casos de uso ao provedor.
