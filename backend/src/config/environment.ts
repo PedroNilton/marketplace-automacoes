@@ -11,6 +11,14 @@ const argon2MemorySchema = z.coerce.number().int().min(19_456);
 const argon2IterationsSchema = z.coerce.number().int().min(2);
 const argon2ParallelismSchema = z.coerce.number().int().min(1);
 
+const originSchema = z
+  .string()
+  .url()
+  .refine((value) => new URL(value).origin === value, {
+    message:
+      'must be an exact origin without path, query, fragment or trailing slash',
+  });
+
 const databaseUrlSchema = z
   .string()
   .url()
@@ -28,8 +36,8 @@ export const environmentSchema = z
       .enum(['development', 'test', 'production'])
       .default('development'),
     PORT: portSchema.default(3001),
-    API_ORIGIN: z.string().url(),
-    FRONTEND_ORIGIN: z.string().url(),
+    API_ORIGIN: originSchema,
+    FRONTEND_ORIGIN: originSchema,
     DATABASE_URL: databaseUrlSchema,
     SMTP_HOST: z.string().trim().min(1).default('127.0.0.1'),
     SMTP_PORT: portSchema.default(1025),

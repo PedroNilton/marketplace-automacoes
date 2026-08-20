@@ -269,7 +269,7 @@
 
 ### T-001-030 — Implementar CORS, origem e CSRF
 
-- [ ] Exigir origem explícita, JSON e `X-CSRF-Token` nas mutações autenticadas; rejeitar cross-site.
+- [x] Exigir origem explícita, JSON e `X-CSRF-Token` nas mutações autenticadas; rejeitar cross-site.
 - Referências: ADR-002, BR-SEC-001/010.
 - Dependências: T-001-022, T-001-027, T-001-028.
 - Resultado: sem origem curinga com credenciais e sem token em URL.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-029. O próximo incremento é T-001-030 — implementar CORS, origem e CSRF.
+A implementação concluiu as tarefas T-001-001 a T-001-030. O próximo incremento é T-001-031 — integrar limites aos endpoints.

@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-029 |
-| **Próximo passo** | T-001-030 — CORS, origem e CSRF |
+| **Concluído** | Tarefas T-001-001 a T-001-030 |
+| **Próximo passo** | T-001-031 — limites por endpoint |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -47,13 +47,14 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Oito contratos REST de identidade com DTOs validados e documentação OpenAPI
 - Cookie de sessão opaco emitido e removido com atributos seguros por ambiente
 - Guards declarativos para sessão verificada, sessão restrita e papel de plataforma
+- CORS restrito, validação de origem e proteção CSRF nas mutações autenticadas
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
 - Jornada utilizável de cadastro, confirmação e login pela interface
-- Proteções de origem, CORS e CSRF completas
+- Limites específicos aplicados aos endpoints sensíveis
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -221,4 +222,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar CORS, validação de origem e proteção CSRF pela tarefa `T-001-030`, exigindo origem explícita e prova CSRF nas mutações autenticadas.
+Integrar os limites de uso aos endpoints sensíveis pela tarefa `T-001-031`, antes de operações caras como Argon2id e envio de e-mail.
