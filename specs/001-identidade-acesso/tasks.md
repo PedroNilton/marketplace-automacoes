@@ -295,7 +295,7 @@
 
 ### T-001-033 — Criar links e templates seguros
 
-- [ ] Criar templates PT-BR de verificação, redefinição e aviso, usando origem confiável configurada.
+- [x] Criar templates PT-BR de verificação, redefinição e aviso, usando origem confiável configurada.
 - Referências: SPEC-001 §§9 e 12, plano §12.
 - Dependências: T-001-032.
 - Resultado: sem senha, token em log ou URL construída por host da requisição.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-032. O próximo incremento é T-001-033 — criar links e templates seguros.
+A implementação concluiu as tarefas T-001-001 a T-001-033. O próximo incremento é T-001-034 — conectar e-mail aos casos de uso.
