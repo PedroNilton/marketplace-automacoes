@@ -8,6 +8,8 @@ import { LogoutSession } from './application/logout-session';
 import { RegisterUser } from './application/register-user';
 import { RequestPasswordReset } from './application/request-password-reset';
 import { ResendEmailVerification } from './application/resend-email-verification';
+import { TransactionalEmailSender } from './application/ports/transactional-email-sender';
+import { SmtpTransactionalEmailSender } from './infrastructure/mail/smtp-transactional-email-sender';
 import { IdentityApplicationModule } from './identity-application.module';
 
 describe('IdentityApplicationModule', () => {
@@ -34,5 +36,11 @@ describe('IdentityApplicationModule', () => {
     ConfirmPasswordReset,
   ])('composes and exports %s with validated dependencies', (useCase) => {
     expect(testingModule?.get(useCase)).toBeInstanceOf(useCase);
+  });
+
+  it('composes the transactional email port with the SMTP adapter', () => {
+    expect(testingModule?.get(TransactionalEmailSender)).toBeInstanceOf(
+      SmtpTransactionalEmailSender,
+    );
   });
 });

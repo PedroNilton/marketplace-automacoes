@@ -1,8 +1,8 @@
 # Roteiro SDD — Marketplace de Automações
 
-- **Versão:** 1.20.0
+- **Versão:** 1.21.0
 - **Status:** Ativo
-- **Data:** 20 de agosto de 2026
+- **Data:** 21 de agosto de 2026
 - **Método:** Spec-Driven Development
 
 ## 1. Objetivo
@@ -29,9 +29,9 @@ Este roteiro organiza a passagem da visão do produto para especificações, pla
 
 ### Próximo marco
 
-A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-031 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST, cookie seguro, guards de identidade, proteção de navegador com CORS, origem e CSRF, e limites HTTP com chaves HMAC por conta e origem.
+A **Spec 001 — Identidade e acesso** está em implementação incremental. As tarefas T-001-001 a T-001-032 concluíram workspace, aplicações mínimas, infraestrutura local, configuração, qualidade, banco, persistência base, valores de e-mail/senha, relógio, tokens seguros, validação de retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST, cookie seguro, guards de identidade, proteção de navegador com CORS, origem e CSRF, limites HTTP com chaves HMAC por conta e origem, e porta SMTP transacional validada no Mailpit local.
 
-O próximo incremento executável é `T-001-032` — implementar SMTP local e porta de e-mail. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
+O próximo incremento executável é `T-001-033` — criar links e templates seguros. A **Spec 002 — Perfis** permanece como a próxima especificação funcional a preparar, sem interromper a sequência autorizada da Spec 001.
 
 ## 3. Fluxo obrigatório de cada funcionalidade
 
@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-032` na Spec 001: criar adaptador SMTP e configuração local para o Mailpit, mantendo casos de uso independentes do provedor. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-033` na Spec 001: criar templates PT-BR e links a partir da origem configurada, sem incluir senha ou token em log. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.

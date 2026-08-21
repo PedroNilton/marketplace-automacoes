@@ -28,6 +28,7 @@ import { IdentityPersistenceModule } from './infrastructure/persistence/identity
 import { NodeSecureTokenGenerator } from './infrastructure/security/node-secure-token-generator';
 import { Sha256TokenDigester } from './infrastructure/security/sha256-token-digester';
 import { SystemClock } from './infrastructure/security/system-clock';
+import { IdentityEmailModule } from './infrastructure/mail/identity-email.module';
 
 const LOGIN_WINDOW_SECONDS = 900;
 const REGISTRATION_WINDOW_SECONDS = 3_600;
@@ -38,7 +39,7 @@ const DUMMY_LOGIN_PASSWORD =
   'credencial fictícia somente para equivalência temporal';
 
 @Module({
-  imports: [IdentityPersistenceModule],
+  imports: [IdentityPersistenceModule, IdentityEmailModule],
   providers: [
     NodeSecureTokenGenerator,
     Sha256TokenDigester,
