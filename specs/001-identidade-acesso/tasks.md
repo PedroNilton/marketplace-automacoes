@@ -287,7 +287,7 @@
 
 ### T-001-032 — Implementar SMTP local e porta de e-mail
 
-- [ ] Criar adaptador SMTP e configuração para Mailpit sem acoplar caso de uso ao provedor.
+- [x] Criar adaptador SMTP e configuração para Mailpit sem acoplar caso de uso ao provedor.
 - Referências: plano §12, AC-001-01/14/15.
 - Dependências: T-001-004, T-001-005.
 - Resultado: ambiente local captura e-mails sem envio real.
@@ -494,4 +494,4 @@ Esses itens não autorizam simulação insegura em produção nem impedem Mailpi
 
 ## 16. Próximo passo
 
-A implementação concluiu as tarefas T-001-001 a T-001-031. O próximo incremento é T-001-032 — implementar SMTP local e porta de e-mail.
+A implementação concluiu as tarefas T-001-001 a T-001-032. O próximo incremento é T-001-033 — criar links e templates seguros.
