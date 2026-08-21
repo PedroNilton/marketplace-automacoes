@@ -104,8 +104,8 @@ Documentos de produto e domínio sustentam as specs; qualquer mudança que ampli
 
 - Fundação documental: concluída.
 - Spec 001 — Identidade e acesso: em implementação.
-- Código: fundação executável, persistência base, valores de e-mail/senha, relógio, tokens seguros, retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST, cookie seguro, guards de identidade, proteção de navegador, limites HTTP e porta SMTP concluídos.
-- Próxima tarefa: `T-001-033` — criar links e templates seguros.
+- Código: fundação executável, persistência base, valores de e-mail/senha, relógio, tokens seguros, retorno interno, contas, autorizações temporárias, sessões, limites de autenticação, casos de uso de identidade, Problem Details global, oito contratos REST, cookie seguro, guards de identidade, proteção de navegador, limites HTTP, porta SMTP e templates seguros concluídos.
+- Próxima tarefa: `T-001-034` — conectar e-mail aos casos de uso.
 - Primeiro marco executável: identidade e acesso local.
 - Primeira fatia vertical: perfil → oferta → moderação → catálogo.
 - Beta: jornada completa sem pagamento interno.
