@@ -12,6 +12,7 @@ import { Clock } from './ports/clock';
 import { PasswordHasher } from './ports/password-hasher';
 import { RateLimitRepository } from './ports/rate-limit-repository';
 import { UserRepository } from './ports/user-repository';
+import { IdentityEmailDelivery } from './ports/identity-email-delivery';
 import { RateLimitDecisions } from './rate-limit-decisions';
 import {
   RegisterUser,
@@ -42,6 +43,7 @@ describe('RegisterUser', () => {
   let transactions: jest.Mocked<TransactionManager>;
   let passwordHasher: jest.Mocked<PasswordHasher>;
   let rateLimits: jest.Mocked<RateLimitRepository>;
+  let emailDelivery: jest.Mocked<IdentityEmailDelivery>;
 
   beforeEach(() => {
     users = repositoryMock<UserRepository>();
@@ -49,6 +51,11 @@ describe('RegisterUser', () => {
     transactions = repositoryMock<TransactionManager>();
     passwordHasher = repositoryMock<PasswordHasher>();
     rateLimits = repositoryMock<RateLimitRepository>();
+    emailDelivery = {
+      sendEmailVerification: jest.fn().mockResolvedValue(undefined),
+      sendPasswordReset: jest.fn().mockResolvedValue(undefined),
+      sendPasswordChanged: jest.fn().mockResolvedValue(undefined),
+    };
 
     users.create.mockResolvedValue(userAccount());
     authTokens.issue.mockImplementation((input) =>
@@ -86,6 +93,7 @@ describe('RegisterUser', () => {
       },
       rateLimitDecisions: new RateLimitDecisions(clock),
       clock,
+      emailDelivery,
     };
   });
 
@@ -121,6 +129,12 @@ describe('RegisterUser', () => {
         expiresAt: new Date('2026-08-15T12:00:00.000Z'),
       },
     });
+    expect(emailDelivery.sendEmailVerification).toHaveBeenCalledWith(
+      result.verification,
+    );
+    expect(transactions.run.mock.invocationCallOrder[0]).toBeLessThan(
+      emailDelivery.sendEmailVerification.mock.invocationCallOrder[0],
+    );
   });
 
   it('uses independent account and origin keys before hashing', async () => {

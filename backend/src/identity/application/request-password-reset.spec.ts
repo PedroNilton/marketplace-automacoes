@@ -68,6 +68,7 @@ describe('RequestPasswordReset', () => {
       rateLimitKeyDigester,
       rateLimitDecisions: new RateLimitDecisions(clock),
       clock,
+      emailDelivery: emailDeliveryMock(),
     };
   });
 
@@ -213,6 +214,14 @@ function validInput(): RequestPasswordResetInput {
   return {
     email: ' MARIANA@EXAMPLE.COM ',
     originIdentifier: ' 203.0.113.40 ',
+  };
+}
+
+function emailDeliveryMock() {
+  return {
+    sendEmailVerification: jest.fn().mockResolvedValue(undefined),
+    sendPasswordReset: jest.fn().mockResolvedValue(undefined),
+    sendPasswordChanged: jest.fn().mockResolvedValue(undefined),
   };
 }
 

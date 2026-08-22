@@ -10,6 +10,7 @@ import { RateLimitRepository } from './ports/rate-limit-repository';
 import { SecureTokenGenerator } from './ports/secure-token-generator';
 import { TokenDigester } from './ports/token-digester';
 import { UserRepository } from './ports/user-repository';
+import { IdentityEmailDelivery } from './ports/identity-email-delivery';
 import { RateLimitDecisions } from './rate-limit-decisions';
 
 export interface ResendEmailVerificationInput {
@@ -46,6 +47,7 @@ export interface ResendEmailVerificationDependencies {
   readonly rateLimitKeyDigester: RateLimitKeyDigester;
   readonly rateLimitDecisions: RateLimitDecisions;
   readonly clock: Clock;
+  readonly emailDelivery: IdentityEmailDelivery;
 }
 
 export class ResendEmailVerification {
@@ -69,49 +71,59 @@ export class ResendEmailVerification {
     const requestedAt = this.dependencies.clock.now();
     await this.enforceRateLimits(email, origin, requestedAt);
 
-    return this.dependencies.transactions.run(async () => {
-      const user = await this.dependencies.users.findByEmail(email);
+    const result: ResendEmailVerificationResult =
+      await this.dependencies.transactions.run(async () => {
+        const user = await this.dependencies.users.findByEmail(email);
 
-      if (!isEligible(user)) {
-        return neutralResult();
-      }
+        if (!isEligible(user)) {
+          return neutralResult();
+        }
 
-      const latestToken = await this.dependencies.authTokens.findLatest(
-        user.id,
-        'EMAIL_VERIFICATION',
-      );
+        const latestToken = await this.dependencies.authTokens.findLatest(
+          user.id,
+          'EMAIL_VERIFICATION',
+        );
 
-      if (
-        latestToken &&
-        latestToken.createdAt.getTime() + this.options.cooldownSeconds * 1_000 >
-          requestedAt.getTime()
-      ) {
-        return neutralResult();
-      }
+        if (
+          latestToken &&
+          latestToken.createdAt.getTime() +
+            this.options.cooldownSeconds * 1_000 >
+            requestedAt.getTime()
+        ) {
+          return neutralResult();
+        }
 
-      const token = this.dependencies.secureTokens.generate();
-      const expiresAt = new Date(
-        requestedAt.getTime() +
-          this.options.verificationTokenTtlSeconds * 1_000,
-      );
-      await this.dependencies.authTokens.issue({
-        userId: user.id,
-        purpose: 'EMAIL_VERIFICATION',
-        tokenDigest: this.dependencies.tokenDigester.digest(token),
-        createdAt: requestedAt,
-        expiresAt,
+        const token = this.dependencies.secureTokens.generate();
+        const expiresAt = new Date(
+          requestedAt.getTime() +
+            this.options.verificationTokenTtlSeconds * 1_000,
+        );
+        await this.dependencies.authTokens.issue({
+          userId: user.id,
+          purpose: 'EMAIL_VERIFICATION',
+          tokenDigest: this.dependencies.tokenDigester.digest(token),
+          createdAt: requestedAt,
+          expiresAt,
+        });
+
+        return {
+          accepted: true as const,
+          verification: {
+            recipient: email.value,
+            displayName: user.displayName,
+            token,
+            expiresAt,
+          },
+        };
       });
 
-      return {
-        accepted: true,
-        verification: {
-          recipient: email.value,
-          displayName: user.displayName,
-          token,
-          expiresAt,
-        },
-      };
-    });
+    if (result.verification) {
+      await this.dependencies.emailDelivery.sendEmailVerification(
+        result.verification,
+      );
+    }
+
+    return result;
   }
 
   private async enforceRateLimits(

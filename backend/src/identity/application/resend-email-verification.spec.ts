@@ -72,6 +72,7 @@ describe('ResendEmailVerification', () => {
       },
       rateLimitDecisions: new RateLimitDecisions(clock),
       clock,
+      emailDelivery: emailDeliveryMock(),
     };
   });
 
@@ -204,6 +205,14 @@ function validInput(): ResendEmailVerificationInput {
   return {
     email: ' MARIANA@EXAMPLE.COM ',
     originIdentifier: ' 203.0.113.20 ',
+  };
+}
+
+function emailDeliveryMock() {
+  return {
+    sendEmailVerification: jest.fn().mockResolvedValue(undefined),
+    sendPasswordReset: jest.fn().mockResolvedValue(undefined),
+    sendPasswordChanged: jest.fn().mockResolvedValue(undefined),
   };
 }
 

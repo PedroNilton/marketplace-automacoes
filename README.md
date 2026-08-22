@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-033 |
-| **Próximo passo** | T-001-034 — conectar e-mail aos casos de uso |
+| **Concluído** | Tarefas T-001-001 a T-001-034 |
+| **Próximo passo** | T-001-035 — criar cliente da API e estado de autenticação |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -51,13 +51,13 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Limites por conta e origem aplicados aos endpoints sensíveis, com `429` e `Retry-After`
 - Porta transacional de e-mail com adaptador SMTP validado no Mailpit local
 - Templates PT-BR de identidade e links construídos pela origem confiável configurada
+- Entrega de e-mails conectada ao cadastro, reenvio, recuperação e aviso de senha alterada, sempre após o commit
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
 - Jornada utilizável de cadastro, confirmação e login pela interface
-- Envio de e-mails após o commit dos fluxos de identidade
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -225,4 +225,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Conectar os e-mails aos casos de uso pela tarefa `T-001-034`, enviando após o commit sem alterar respostas neutras ou desfazer dados válidos em falha SMTP.
+Implementar o cliente da API e o estado de autenticação pela tarefa `T-001-035`.

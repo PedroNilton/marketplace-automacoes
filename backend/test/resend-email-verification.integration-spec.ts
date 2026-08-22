@@ -81,6 +81,7 @@ describe('ResendEmailVerification integration', () => {
       rateLimitKeyDigester,
       rateLimitDecisions: new RateLimitDecisions(clock),
       clock,
+      emailDelivery: noOpEmailDelivery(),
     };
   });
 
@@ -329,6 +330,14 @@ describe('ResendEmailVerification integration', () => {
     });
   }
 });
+
+function noOpEmailDelivery() {
+  return {
+    sendEmailVerification: (): Promise<void> => Promise.resolve(),
+    sendPasswordReset: (): Promise<void> => Promise.resolve(),
+    sendPasswordChanged: (): Promise<void> => Promise.resolve(),
+  };
+}
 
 class MutableClock extends Clock {
   constructor(private value: Date) {

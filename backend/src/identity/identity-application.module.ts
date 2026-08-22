@@ -29,6 +29,7 @@ import { NodeSecureTokenGenerator } from './infrastructure/security/node-secure-
 import { Sha256TokenDigester } from './infrastructure/security/sha256-token-digester';
 import { SystemClock } from './infrastructure/security/system-clock';
 import { IdentityEmailModule } from './infrastructure/mail/identity-email.module';
+import { IdentityEmailDelivery } from './application/ports/identity-email-delivery';
 
 const LOGIN_WINDOW_SECONDS = 900;
 const REGISTRATION_WINDOW_SECONDS = 3_600;
@@ -89,6 +90,7 @@ const DUMMY_LOGIN_PASSWORD =
         RateLimitKeyDigester,
         RateLimitDecisions,
         Clock,
+        IdentityEmailDelivery,
         ConfigService,
       ],
       useFactory: (
@@ -103,6 +105,7 @@ const DUMMY_LOGIN_PASSWORD =
         rateLimitKeyDigester: RateLimitKeyDigester,
         rateLimitDecisions: RateLimitDecisions,
         clock: Clock,
+        emailDelivery: IdentityEmailDelivery,
         config: ConfigService<Environment, true>,
       ) =>
         new RegisterUser(
@@ -118,6 +121,7 @@ const DUMMY_LOGIN_PASSWORD =
             rateLimitKeyDigester,
             rateLimitDecisions,
             clock,
+            emailDelivery,
           },
           {
             currentTermsVersion: config.get('CURRENT_TERMS_VERSION', {
@@ -175,6 +179,7 @@ const DUMMY_LOGIN_PASSWORD =
         RateLimitKeyDigester,
         RateLimitDecisions,
         Clock,
+        IdentityEmailDelivery,
         ConfigService,
       ],
       useFactory: (
@@ -187,6 +192,7 @@ const DUMMY_LOGIN_PASSWORD =
         rateLimitKeyDigester: RateLimitKeyDigester,
         rateLimitDecisions: RateLimitDecisions,
         clock: Clock,
+        emailDelivery: IdentityEmailDelivery,
         config: ConfigService<Environment, true>,
       ) =>
         new ResendEmailVerification(
@@ -200,6 +206,7 @@ const DUMMY_LOGIN_PASSWORD =
             rateLimitKeyDigester,
             rateLimitDecisions,
             clock,
+            emailDelivery,
           },
           {
             verificationTokenTtlSeconds: config.get('EMAIL_VERIFICATION_TTL', {
@@ -329,6 +336,7 @@ const DUMMY_LOGIN_PASSWORD =
         RateLimitKeyDigester,
         RateLimitDecisions,
         Clock,
+        IdentityEmailDelivery,
         ConfigService,
       ],
       useFactory: (
@@ -341,6 +349,7 @@ const DUMMY_LOGIN_PASSWORD =
         rateLimitKeyDigester: RateLimitKeyDigester,
         rateLimitDecisions: RateLimitDecisions,
         clock: Clock,
+        emailDelivery: IdentityEmailDelivery,
         config: ConfigService<Environment, true>,
       ) =>
         new RequestPasswordReset(
@@ -354,6 +363,7 @@ const DUMMY_LOGIN_PASSWORD =
             rateLimitKeyDigester,
             rateLimitDecisions,
             clock,
+            emailDelivery,
           },
           {
             resetTokenTtlSeconds: config.get('PASSWORD_RESET_TTL', {
@@ -377,6 +387,7 @@ const DUMMY_LOGIN_PASSWORD =
         PasswordHasher,
         TokenDigester,
         Clock,
+        IdentityEmailDelivery,
       ],
       useFactory: (
         authTokens: AuthTokenRepository,
@@ -387,6 +398,7 @@ const DUMMY_LOGIN_PASSWORD =
         passwordHasher: PasswordHasher,
         tokenDigester: TokenDigester,
         clock: Clock,
+        emailDelivery: IdentityEmailDelivery,
       ) =>
         new ConfirmPasswordReset({
           authTokens,
@@ -397,6 +409,7 @@ const DUMMY_LOGIN_PASSWORD =
           passwordHasher,
           tokenDigester,
           clock,
+          emailDelivery,
         }),
     },
   ],
