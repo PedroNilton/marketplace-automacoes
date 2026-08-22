@@ -71,6 +71,7 @@ describe('ConfirmPasswordReset integration', () => {
       passwordHasher,
       tokenDigester,
       clock: new FixedClock(now),
+      emailDelivery: noOpEmailDelivery(),
     };
   });
 
@@ -406,6 +407,14 @@ describe('ConfirmPasswordReset integration', () => {
     await prisma.user.deleteMany({ where: { email: { in: emails } } });
   }
 });
+
+function noOpEmailDelivery() {
+  return {
+    sendEmailVerification: (): Promise<void> => Promise.resolve(),
+    sendPasswordReset: (): Promise<void> => Promise.resolve(),
+    sendPasswordChanged: (): Promise<void> => Promise.resolve(),
+  };
+}
 
 function input(token: string, password: string) {
   return { token, password, passwordConfirmation: password };

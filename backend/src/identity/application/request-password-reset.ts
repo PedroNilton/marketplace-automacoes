@@ -9,6 +9,7 @@ import { RateLimitRepository } from './ports/rate-limit-repository';
 import { SecureTokenGenerator } from './ports/secure-token-generator';
 import { TokenDigester } from './ports/token-digester';
 import { UserRepository } from './ports/user-repository';
+import { IdentityEmailDelivery } from './ports/identity-email-delivery';
 import { RateLimitDecisions } from './rate-limit-decisions';
 
 export interface RequestPasswordResetInput {
@@ -44,6 +45,7 @@ export interface RequestPasswordResetDependencies {
   readonly rateLimitKeyDigester: RateLimitKeyDigester;
   readonly rateLimitDecisions: RateLimitDecisions;
   readonly clock: Clock;
+  readonly emailDelivery: IdentityEmailDelivery;
 }
 
 export class RequestPasswordReset {
@@ -63,35 +65,42 @@ export class RequestPasswordReset {
 
     await this.enforceRateLimits(email, origin, requestedAt);
 
-    return this.dependencies.transactions.run(async () => {
-      const user = await this.dependencies.users.findByEmail(email);
+    const result: RequestPasswordResetResult =
+      await this.dependencies.transactions.run(async () => {
+        const user = await this.dependencies.users.findByEmail(email);
 
-      if (!user) {
-        return neutralResult();
-      }
+        if (!user) {
+          return neutralResult();
+        }
 
-      const token = this.dependencies.secureTokens.generate();
-      const expiresAt = new Date(
-        requestedAt.getTime() + this.options.resetTokenTtlSeconds * 1_000,
-      );
-      await this.dependencies.authTokens.issue({
-        userId: user.id,
-        purpose: 'PASSWORD_RESET',
-        tokenDigest: this.dependencies.tokenDigester.digest(token),
-        createdAt: requestedAt,
-        expiresAt,
+        const token = this.dependencies.secureTokens.generate();
+        const expiresAt = new Date(
+          requestedAt.getTime() + this.options.resetTokenTtlSeconds * 1_000,
+        );
+        await this.dependencies.authTokens.issue({
+          userId: user.id,
+          purpose: 'PASSWORD_RESET',
+          tokenDigest: this.dependencies.tokenDigester.digest(token),
+          createdAt: requestedAt,
+          expiresAt,
+        });
+
+        return {
+          accepted: true as const,
+          reset: {
+            recipient: email.value,
+            displayName: user.displayName,
+            token,
+            expiresAt,
+          },
+        };
       });
 
-      return {
-        accepted: true,
-        reset: {
-          recipient: email.value,
-          displayName: user.displayName,
-          token,
-          expiresAt,
-        },
-      };
-    });
+    if (result.reset) {
+      await this.dependencies.emailDelivery.sendPasswordReset(result.reset);
+    }
+
+    return result;
   }
 
   private async enforceRateLimits(

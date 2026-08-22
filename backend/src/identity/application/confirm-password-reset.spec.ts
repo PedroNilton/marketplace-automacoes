@@ -58,6 +58,7 @@ describe('ConfirmPasswordReset', () => {
       passwordHasher,
       tokenDigester,
       clock,
+      emailDelivery: emailDeliveryMock(),
     };
   });
 
@@ -196,6 +197,14 @@ function validInput(): ConfirmPasswordResetInput {
     token: 'raw-password-reset-token',
     password: 'uma senha longa e válida 🔐',
     passwordConfirmation: 'uma senha longa e válida 🔐',
+  };
+}
+
+function emailDeliveryMock() {
+  return {
+    sendEmailVerification: jest.fn().mockResolvedValue(undefined),
+    sendPasswordReset: jest.fn().mockResolvedValue(undefined),
+    sendPasswordChanged: jest.fn().mockResolvedValue(undefined),
   };
 }
 

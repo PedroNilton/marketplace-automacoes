@@ -11,6 +11,7 @@ import { RateLimitRepository } from './ports/rate-limit-repository';
 import { SecureTokenGenerator } from './ports/secure-token-generator';
 import { TokenDigester } from './ports/token-digester';
 import { UserRepository } from './ports/user-repository';
+import { IdentityEmailDelivery } from './ports/identity-email-delivery';
 import { InvalidRegistrationInputError } from './errors/invalid-registration-input.error';
 import { RegistrationRateLimitExceededError } from './errors/registration-rate-limit-exceeded.error';
 
@@ -62,6 +63,7 @@ export interface RegisterUserDependencies {
   readonly rateLimitKeyDigester: RateLimitKeyDigester;
   readonly rateLimitDecisions: RateLimitDecisions;
   readonly clock: Clock;
+  readonly emailDelivery: IdentityEmailDelivery;
 }
 
 export class RegisterUser {
@@ -128,7 +130,7 @@ export class RegisterUser {
       throw error;
     }
 
-    return {
+    const result: RegisterUserResult = {
       accepted: true,
       verification: {
         recipient: email.value,
@@ -137,6 +139,14 @@ export class RegisterUser {
         expiresAt,
       },
     };
+
+    if (result.verification) {
+      await this.dependencies.emailDelivery.sendEmailVerification(
+        result.verification,
+      );
+    }
+
+    return result;
   }
 
   private async enforceRateLimit(

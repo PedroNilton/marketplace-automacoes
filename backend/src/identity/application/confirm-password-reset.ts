@@ -6,6 +6,7 @@ import { PasswordHasher } from './ports/password-hasher';
 import { SessionRepository } from './ports/session-repository';
 import { TokenDigester } from './ports/token-digester';
 import { UserRepository } from './ports/user-repository';
+import { IdentityEmailDelivery } from './ports/identity-email-delivery';
 
 const MAXIMUM_RAW_TOKEN_LENGTH = 512;
 
@@ -36,6 +37,7 @@ export interface ConfirmPasswordResetDependencies {
   readonly passwordHasher: PasswordHasher;
   readonly tokenDigester: TokenDigester;
   readonly clock: Clock;
+  readonly emailDelivery: IdentityEmailDelivery;
 }
 
 export class ConfirmPasswordReset {
@@ -72,38 +74,47 @@ export class ConfirmPasswordReset {
       input.password,
     );
 
-    return this.dependencies.transactions.run(async () => {
-      const token = await this.dependencies.authTokens.consume(tokenInput);
+    const result: ConfirmPasswordResetResult =
+      await this.dependencies.transactions.run(async () => {
+        const token = await this.dependencies.authTokens.consume(tokenInput);
 
-      if (!token) {
-        return invalidResult();
-      }
+        if (!token) {
+          return invalidResult();
+        }
 
-      const user = await this.dependencies.users.updatePasswordHash(
-        token.userId,
-        passwordHash,
-      );
-
-      if (!user) {
-        throw new Error(
-          'Password reset token references a missing user account.',
+        const user = await this.dependencies.users.updatePasswordHash(
+          token.userId,
+          passwordHash,
         );
-      }
 
-      await this.dependencies.sessions.revokeAllForUser(
-        user.id,
-        confirmedAt,
-        'PASSWORD_RESET',
+        if (!user) {
+          throw new Error(
+            'Password reset token references a missing user account.',
+          );
+        }
+
+        await this.dependencies.sessions.revokeAllForUser(
+          user.id,
+          confirmedAt,
+          'PASSWORD_RESET',
+        );
+
+        return {
+          status: 'RESET' as const,
+          notification: {
+            recipient: user.email.value,
+            displayName: user.displayName,
+          },
+        };
+      });
+
+    if (result.status === 'RESET') {
+      await this.dependencies.emailDelivery.sendPasswordChanged(
+        result.notification,
       );
+    }
 
-      return {
-        status: 'RESET',
-        notification: {
-          recipient: user.email.value,
-          displayName: user.displayName,
-        },
-      };
-    });
+    return result;
   }
 }
 
