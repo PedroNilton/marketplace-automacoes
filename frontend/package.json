@@ -9,7 +9,9 @@
     "start": "next start",
     "format": "prettier --ignore-path ../.prettierignore --write \"src/**/*.{ts,tsx,css}\" \"*.{ts,mjs,json}\"",
     "format:check": "prettier --ignore-path ../.prettierignore --check \"src/**/*.{ts,tsx,css}\" \"*.{ts,mjs,json}\"",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "npm run test:unit",
+    "test:unit": "jest --config jest.config.mjs"
   },
   "dependencies": {
     "next": "16.2.12",
@@ -21,9 +23,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/jest": "30.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
+    "jest": "30.0.0",
     "tailwindcss": "^4",
+    "ts-jest": "29.2.5",
     "typescript": "^5"
   }
 }
