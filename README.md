@@ -16,8 +16,8 @@ Marketplace brasileiro para conectar compradores que desejam automatizar process
 |---|---|
 | **Marco** | M1 — Fundação executável |
 | **Incremento** | Spec 001 — Identidade e acesso |
-| **Concluído** | Tarefas T-001-001 a T-001-034 |
-| **Próximo passo** | T-001-035 — criar cliente da API e estado de autenticação |
+| **Concluído** | Tarefas T-001-001 a T-001-035 |
+| **Próximo passo** | T-001-036 — implementar cadastro AUT-01 |
 | **Qualidade** | Formatação, lint, testes e builds verificados pelo GitHub Actions |
 
 ## Proposta do MVP
@@ -52,12 +52,13 @@ A beta não processará pagamentos. Os preços serão apenas informativos até e
 - Porta transacional de e-mail com adaptador SMTP validado no Mailpit local
 - Templates PT-BR de identidade e links construídos pela origem confiável configurada
 - Entrega de e-mails conectada ao cadastro, reenvio, recuperação e aviso de senha alterada, sempre após o commit
+- Cliente HTTP de identidade com cookies, Problem Details tipado e estado de sessão/CSRF apenas em memória
 - Testes unitários, de integração e E2E
 - Pipeline de CI para validar cada pull request e a branch `main`
 
 ## O que ainda não está disponível
 
-- Jornada utilizável de cadastro, confirmação e login pela interface
+- Telas utilizáveis de cadastro, confirmação e login
 - Perfis profissionais e publicação de ofertas
 - Catálogo, pedidos, mensagens, entrega e avaliações
 - Pagamentos ou processamento financeiro
@@ -225,4 +226,4 @@ Mudanças devem preservar o escopo da beta e manter documentação, contratos, m
 
 ## Próximo passo
 
-Implementar o cliente da API e o estado de autenticação pela tarefa `T-001-035`.
+Implementar a tela de cadastro AUT-01 pela tarefa `T-001-036`.

@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-035` na Spec 001: criar o cliente da API e o estado de autenticação no frontend, mantendo cookie e token CSRF somente em memória. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-036` na Spec 001: criar a tela de cadastro AUT-01 conectada ao cliente de API, com acessibilidade, validação de campos e resposta neutra para e-mail já usado. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
