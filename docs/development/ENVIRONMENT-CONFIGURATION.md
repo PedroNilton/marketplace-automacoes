@@ -15,7 +15,7 @@ node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
 4. Inicie a infraestrutura com `npm run infra:up`.
 5. Inicie a API com `npm run dev:backend`.
 
-O `.env` real é ignorado pelo Git. Somente o `.env.example`, com padrões locais e placeholders não secretos, pode ser versionado.
+O `.env` real é ignorado pelo Git. Somente o `.env.example`, com padrões locais e placeholders não secretos, pode ser versionado. O frontend possui seu próprio `frontend/.env.example`: copie-o para `frontend/.env.local` e configure `NEXT_PUBLIC_API_ORIGIN` com a origem pública da API, sem segredos.
 
 ## Grupos de configuração
 

@@ -313,7 +313,7 @@
 
 ### T-001-035 — Criar cliente da API e estado de autenticação
 
-- [ ] Implementar requisições com `credentials: include`, Problem Details tipado, identidade mínima e CSRF em memória.
+- [x] Implementar requisições com `credentials: include`, Problem Details tipado, identidade mínima e CSRF em memória.
 - Referências: plano §§7, 8, 13 e 14.
 - Dependências: T-001-003, T-001-027, T-001-030.
 - Resultado: nenhum token de sessão ou CSRF é persistido em armazenamento web.

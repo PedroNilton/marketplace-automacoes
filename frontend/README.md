@@ -15,4 +15,7 @@ npm run build --workspace frontend
 
 Por padrão, a aplicação inicia em `http://localhost:3000`.
 
+Para conectar a interface à API local, copie `.env.example` para `.env.local`.
+`NEXT_PUBLIC_API_ORIGIN` é uma origem pública, não deve conter segredo.
+
 O fluxo completo de validação está em [`../docs/development/QUALITY-COMMANDS.md`](../docs/development/QUALITY-COMMANDS.md).
