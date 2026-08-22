@@ -303,7 +303,7 @@
 
 ### T-001-034 — Conectar e-mail aos casos de uso
 
-- [ ] Enviar após commit; tratar falha com observabilidade e reenvio, mantendo resposta neutra.
+- [x] Enviar após commit; tratar falha com observabilidade e reenvio, mantendo resposta neutra.
 - Referências: AC-001-01/07/14/15, plano §6.1.
 - Dependências: T-001-018, T-001-020, T-001-024, T-001-025, T-001-033.
 - Resultado: falha SMTP não desfaz conta válida nem revela existência.

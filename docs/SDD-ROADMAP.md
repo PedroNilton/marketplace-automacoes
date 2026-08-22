@@ -195,4 +195,4 @@ O progresso será medido por artefatos e comportamentos concluídos, não por qu
 
 ## 11. Próxima ação autorizada
 
-Implementar `T-001-034` na Spec 001: enviar mensagens após o commit dos fluxos de identidade, tratando falha SMTP sem desfazer dados válidos nem revelar a existência de conta. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
+Implementar `T-001-035` na Spec 001: criar o cliente da API e o estado de autenticação no frontend, mantendo cookie e token CSRF somente em memória. A criação de `specs/002-perfis/spec.md` permanece como a próxima frente documental quando for retomada.
