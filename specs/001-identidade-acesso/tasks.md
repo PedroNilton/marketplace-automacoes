@@ -321,7 +321,7 @@
 
 ### T-001-036 — Implementar cadastro AUT-01
 
-- [ ] Criar formulário responsivo com nome, e-mail, senha, confirmação e aceites legais.
+- [x] Criar formulário responsivo com nome, e-mail, senha, confirmação e aceites legais.
 - Referências: RF-IDA-001, AC-001-01 a AC-001-04, telas AUT-01.
 - Dependências: T-001-003, T-001-035.
 - Resultado: gerenciadores de senha, teclado, foco e mensagens por campo funcionam.

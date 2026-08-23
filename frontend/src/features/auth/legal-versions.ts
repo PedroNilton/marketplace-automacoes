@@ -1,0 +1,5 @@
+export const CURRENT_TERMS_VERSION =
+  process.env.NEXT_PUBLIC_CURRENT_TERMS_VERSION ?? 'beta-1';
+
+export const CURRENT_PRIVACY_VERSION =
+  process.env.NEXT_PUBLIC_CURRENT_PRIVACY_VERSION ?? 'beta-1';
