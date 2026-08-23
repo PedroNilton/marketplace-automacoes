@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-16 sm:px-10">
@@ -28,6 +30,12 @@ export default function Home() {
             </dd>
           </div>
         </dl>
+        <Link
+          className="mt-8 inline-flex rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
+          href="/cadastro"
+        >
+          Criar conta
+        </Link>
       </section>
     </main>
   );
