@@ -329,7 +329,7 @@
 
 ### T-001-037 — Implementar verificação AUT-03 `P`
 
-- [ ] Capturar token com segurança, removê-lo da URL visível, confirmar e permitir reenvio controlado.
+- [x] Capturar token com segurança, removê-lo da URL visível, confirmar e permitir reenvio controlado.
 - Referências: RF-IDA-002, AC-001-05 a AC-001-07.
 - Dependências: T-001-003, T-001-035.
 - Resultado: estados válido, inválido, expirado, usado e limitado.
