@@ -337,7 +337,7 @@
 
 ### T-001-038 — Implementar login AUT-02 `P`
 
-- [ ] Criar formulário e tratar credencial genérica, sessão restrita, conta indisponível e retorno seguro.
+- [x] Criar formulário e tratar credencial genérica, sessão restrita, conta indisponível e retorno seguro.
 - Referências: RF-IDA-003/006, AC-001-08 a AC-001-12.
 - Dependências: T-001-003, T-001-035.
 - Resultado: senha não permanece após falha e interface não tenta autorizar por conta própria.
