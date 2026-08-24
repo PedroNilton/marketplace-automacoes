@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { createIdentityApiClient } from '@/lib/api/identity-api-client';
 import { ApiProblemError } from '@/lib/api/problem-details';
 import {
@@ -19,6 +19,18 @@ export function EmailVerification() {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [resendMessage, setResendMessage] = useState<string | null>(null);
   const [isResending, setIsResending] = useState(false);
+
+  const confirm = useCallback(
+    async (token: string) => {
+      try {
+        await client.confirmEmail(token);
+        setStatus('verified');
+      } catch (error) {
+        setStatus(isInvalidOrExpiredToken(error) ? 'invalid' : 'unavailable');
+      }
+    },
+    [client],
+  );
 
   useEffect(() => {
     const token = readEmailVerificationToken(window.location.search);
@@ -39,16 +51,7 @@ export function EmailVerification() {
     }, 0);
 
     return () => window.clearTimeout(confirmationTimer);
-  }, [client]);
-
-  async function confirm(token: string) {
-    try {
-      await client.confirmEmail(token);
-      setStatus('verified');
-    } catch (error) {
-      setStatus(isInvalidOrExpiredToken(error) ? 'invalid' : 'unavailable');
-    }
-  }
+  }, [confirm]);
 
   async function resend(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
