@@ -44,7 +44,11 @@ export function LoginForm() {
         router.replace(postLoginPath(result.session));
       } catch (error) {
         setPassword('');
-        setFormError(loginErrorMessage(error));
+        if (isAccountUnavailable(error)) {
+          router.replace('/acesso-indisponivel?reason=account-unavailable');
+          return;
+        }
+        setFormError(loginErrorMessage());
       } finally {
         setIsSubmitting(false);
       }
@@ -174,13 +178,13 @@ function isEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(value.trim());
 }
 
-function loginErrorMessage(error: unknown): string {
-  if (
+function loginErrorMessage(): string {
+  return 'E-mail ou senha incorretos. Confira os dados e tente novamente.';
+}
+
+function isAccountUnavailable(error: unknown): boolean {
+  return (
     error instanceof ApiProblemError &&
     error.problem.code === 'account_unavailable'
-  ) {
-    return 'Sua conta não está disponível para acesso no momento.';
-  }
-
-  return 'E-mail ou senha incorretos. Confira os dados e tente novamente.';
+  );
 }

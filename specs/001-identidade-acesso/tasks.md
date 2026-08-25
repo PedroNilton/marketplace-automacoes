@@ -353,7 +353,7 @@
 
 ### T-001-040 — Implementar acesso indisponível AUT-06
 
-- [ ] Apresentar verificação pendente, sessão expirada, conta indisponível e acesso negado sem misturar causas sensíveis.
+- [x] Apresentar verificação pendente, sessão expirada, conta indisponível e acesso negado sem misturar causas sensíveis.
 - Referências: RF-IDA-006/007, AC-001-09/11/17.
 - Dependências: T-001-035, T-001-038.
 - Resultado: cada estado oferece próximo passo seguro.
