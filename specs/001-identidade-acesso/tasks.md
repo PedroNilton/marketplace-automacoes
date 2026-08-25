@@ -345,7 +345,7 @@
 
 ### T-001-039 — Implementar recuperação AUT-04/AUT-05 `P`
 
-- [ ] Criar solicitação neutra e redefinição com token, nova senha e retorno ao login.
+- [x] Criar solicitação neutra e redefinição com token, nova senha e retorno ao login.
 - Referências: RF-IDA-004, AC-001-14 a AC-001-16.
 - Dependências: T-001-003, T-001-035.
 - Resultado: token não é persistido e estados de expiração são compreensíveis.
