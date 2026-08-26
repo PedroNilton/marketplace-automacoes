@@ -363,7 +363,7 @@
 
 ### T-001-041 — Consolidar suíte unitária
 
-- [ ] Confirmar cobertura de políticas, casos de uso, expiração, retorno e limites.
+- [x] Confirmar cobertura de políticas, casos de uso, expiração, retorno e limites.
 - Referências: todos os ACs e BR-IDA.
 - Dependências: T-001-018 a T-001-025.
 - Resultado: testes determinísticos sem banco ou SMTP real quando não necessários.
