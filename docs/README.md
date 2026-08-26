@@ -19,9 +19,10 @@ Este índice apresenta a autoridade, o propósito e a ordem de leitura dos artef
 13. [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md)
 14. [`development/ENVIRONMENT-CONFIGURATION.md`](development/ENVIRONMENT-CONFIGURATION.md)
 15. [`development/QUALITY-COMMANDS.md`](development/QUALITY-COMMANDS.md)
-16. [`development/PRISMA.md`](development/PRISMA.md)
-17. [`development/DATABASE-MIGRATIONS.md`](development/DATABASE-MIGRATIONS.md)
-18. [`../specs/README.md`](../specs/README.md)
+16. [`development/UNIT-TEST-SUITE.md`](development/UNIT-TEST-SUITE.md)
+17. [`development/PRISMA.md`](development/PRISMA.md)
+18. [`development/DATABASE-MIGRATIONS.md`](development/DATABASE-MIGRATIONS.md)
+19. [`../specs/README.md`](../specs/README.md)
 
 ## Artefatos por área
 
@@ -74,6 +75,7 @@ Novos ADRs serão criados somente quando outra decisão técnica duradoura for n
 | [`development/LOCAL-INFRASTRUCTURE.md`](development/LOCAL-INFRASTRUCTURE.md) | Ativo | Executar PostgreSQL e Mailpit localmente |
 | [`development/ENVIRONMENT-CONFIGURATION.md`](development/ENVIRONMENT-CONFIGURATION.md) | Ativo | Configurar e validar o ambiente da API |
 | [`development/QUALITY-COMMANDS.md`](development/QUALITY-COMMANDS.md) | Ativo | Executar formatação, lint, testes e build |
+| [`development/UNIT-TEST-SUITE.md`](development/UNIT-TEST-SUITE.md) | Ativo | Cobertura unitária consolidada da Spec 001 |
 | [`development/PRISMA.md`](development/PRISMA.md) | Ativo | Gerar o Prisma Client e testar a conexão PostgreSQL |
 | [`development/DATABASE-MIGRATIONS.md`](development/DATABASE-MIGRATIONS.md) | Ativo | Criar, aplicar e verificar migrations PostgreSQL |
 
